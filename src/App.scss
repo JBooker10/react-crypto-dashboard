@@ -1,0 +1,10 @@
+@import "./styles/colors.scss";
+
+.App {
+  display: flex;
+  height: auto;
+}
+
+body {
+  background: $NavyLight;
+}

@@ -1,0 +1,45 @@
+@import "./../../styles/colors";
+@import "./../../../node_modules/spectre.css/src/variables";
+@import "./../../../node_modules/spectre.css/src/navbar";
+
+.side-navbar {
+  display: grid;
+  grid-column: auto;
+  // display: block;
+  width: 15vw;
+
+  background: $NavyDark;
+  height: 100vh;
+}
+
+.navbar {
+  padding: 1.25em 3em;
+  border-bottom: 1px solid $Light;
+  background: $Navy;
+  width: 85vw;
+  position: fixed;
+
+  input {
+    background: none;
+    border: none;
+    color: $White;
+    font-size: 18px;
+  }
+
+  input::placeholder {
+    color: $White !important;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 900px) {
+  .side-navbar {
+    transition: 3000ms;
+    width: 0;
+    display: none !important;
+  }
+
+  .navbar {
+    width: 100vw;
+  }
+}

@@ -1,0 +1,184 @@
+@import "./../../styles/colors.scss";
+
+.main {
+  flex: auto;
+  background: $NavyLight;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.percentage {
+  color: $Green;
+}
+
+.container {
+  height: auto;
+  margin-top: 6em;
+  width: 80vw;
+  //   height: calc(100vh - 90px);
+
+  //   margin: 2.5em;
+  //   max-width: 1300px;
+}
+
+.crypto-header {
+  //   margin: 2.5em 0;
+  padding: 2em 0;
+  display: flex;
+  justify-content: space-between;
+
+  .crypto-head {
+    display: flex;
+    align-items: center;
+    h1 {
+      font-weight: 200;
+    }
+  }
+
+  .crypto-price {
+    display: flex;
+    align-items: center;
+
+    p {
+      color: $Green;
+      margin-left: 0.5em;
+    }
+  }
+
+  h1 {
+    color: $White;
+  }
+
+  span.symbol {
+    color: $Light;
+  }
+
+  .crypto-type {
+    height: 100px;
+    width: 100px;
+    border-radius: 3px;
+    margin-right: 2em;
+    background: $NavyDark;
+  }
+}
+
+.crypto-data {
+  .tab-block {
+    border: none;
+  }
+
+  .tab-item {
+    padding-bottom: 1em;
+    color: $Grey;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: 1px solid $Light;
+    cursor: pointer;
+  }
+
+  .react-tabs__tab--selected {
+    color: $Primary;
+    padding-bottom: 1em;
+    border-bottom: 1px solid;
+  }
+}
+
+.metrics {
+  display: block;
+  margin: 2.5em auto;
+
+  width: 15vw;
+  max-width: 320px;
+  min-width: 220px;
+  //   width: 350px;
+  //   display: flex;
+
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-content: center;
+
+  .metric-actions {
+    display: flex;
+    flex-direction: column;
+
+    .btn-primary {
+      background: $Primary;
+      color: $NavyDark;
+      border: none;
+      margin: 0.5em 0;
+      width: 100%;
+      font-weight: 600;
+      border-radius: 4px;
+      min-width: 200px;
+      max-width: 315px;
+      height: 45px;
+      font-size: 14px !important;
+      text-transform: uppercase;
+    }
+
+    .btn-secondary {
+      background: $Secondary;
+      color: $White;
+      margin: 0.5em 0;
+      border-radius: 4px;
+      height: 45px;
+      width: 100%;
+      max-width: 315px;
+      border: none;
+      min-width: 200px;
+      font-weight: 600;
+      font-size: 14px !important;
+      text-transform: uppercase;
+    }
+  }
+
+  .metrics-card {
+    width: 100%;
+    display: flex;
+    // align-items: center;
+    flex-direction: column;
+    margin: 2em 0;
+
+    p {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      color: $White;
+      font-weight: 400;
+    }
+    .card {
+      background: $NavyDark;
+      border: 1px solid $Light;
+      height: 100px;
+      max-width: 315px;
+      min-width: 200px;
+      border-radius: 3px;
+      width: inherit;
+      font-size: 18px;
+      color: white;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.line-chart {
+  margin-top: 3em;
+  h1 {
+    font-weight: 100;
+  }
+  span {
+    color: $White;
+    font-weight: 600;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .main {
+    width: 100% !important;
+  }
+}
