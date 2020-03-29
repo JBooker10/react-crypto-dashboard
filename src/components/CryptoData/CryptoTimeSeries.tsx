@@ -1,6 +1,6 @@
 import React from "react";
 import CryptoTimeSeriesActions from "./CryptoTimeSeriesActions";
-import { Primary } from "./../../styles/colors";
+import { Primary, Lighter, Light, White, Navy } from "./../../styles/colors";
 import {
   Area,
   AreaChart,
@@ -8,6 +8,7 @@ import {
   XAxis,
   CartesianGrid,
   BarChart,
+  Tooltip,
   Bar
 } from "recharts";
 
@@ -485,7 +486,13 @@ const data = [
 ];
 
 export default function CryptoTimeSeries() {
-  const navy = "rgba(56, 62, 70, 0.3)";
+  const width = window.innerWidth / 1.68;
+  const contentStyle = {
+    background: "rgba(24, 27, 33, .95)",
+    border: `1px solid ${Light}`,
+    borderRadius: "3px"
+  };
+
   return (
     <>
       <CryptoTimeSeriesActions />
@@ -493,7 +500,7 @@ export default function CryptoTimeSeries() {
         <h5>
           CryptoCompare Index: ETH <span className="chart-price">$270.10</span>
         </h5>
-        <AreaChart width={window.innerWidth / 1.68} height={315} data={data}>
+        <AreaChart width={width} height={315} data={data}>
           <XAxis dataKey="name" hide={true} />
           <YAxis
             tick={true}
@@ -501,9 +508,9 @@ export default function CryptoTimeSeries() {
             orientation="right"
             axisLine={false}
             tickCount={5}
-            stroke="#fff"
+            stroke={White}
           />
-          <CartesianGrid vertical={false} stroke={navy} strokeDasharray="6" />
+          <CartesianGrid vertical={false} stroke={Light} strokeDasharray="8" />
           <Area
             type="linear"
             dataKey="uv"
@@ -512,20 +519,33 @@ export default function CryptoTimeSeries() {
             fill={Primary}
             strokeWidth="2"
           />
+          <Tooltip
+            cursor={{
+              stroke: Lighter,
+              strokeDasharray: 8
+            }}
+            contentStyle={contentStyle}
+          />
         </AreaChart>
       </div>
       <div>
         <h5>
           Volume: ETH <span className="chart-price"> $1270.11</span>
         </h5>
-        <BarChart width={window.innerWidth / 1.68} height={100} data={data2}>
+        <BarChart width={width} height={100} data={data2}>
           <YAxis
             tick={true}
             tickLine={false}
             orientation="right"
             axisLine={false}
             tickCount={1}
-            stroke="#fff"
+            stroke={White}
+          />
+          <Tooltip
+            cursor={{
+              fill: Navy
+            }}
+            contentStyle={contentStyle}
           />
           <Bar dataKey="uv" fill={Primary} />
         </BarChart>
