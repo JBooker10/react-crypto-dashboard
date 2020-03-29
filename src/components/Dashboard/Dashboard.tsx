@@ -11,7 +11,7 @@ export default function Dashboard() {
       <Navbar />
       <div className="container">
         <div className="columns">
-          <div className="column col-9 col-mx-auto">
+          <div className="column col-9 col-sm-auto col-mx-auto">
             <CryptoHeader />
             <div className="columns">
               <CryptoData />

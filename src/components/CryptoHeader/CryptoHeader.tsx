@@ -7,7 +7,7 @@ export default function CryptoHeader() {
     <div className="crypto-header">
       <div className="crypto-head">
         <div className="crypto-type">
-          <Ethereum className="crypto-icon" style={{ height: 60 }} />
+          <Ethereum className="crypto-icon" />
         </div>
         <h1>
           Ethereum <span className="symbol">ETC</span>

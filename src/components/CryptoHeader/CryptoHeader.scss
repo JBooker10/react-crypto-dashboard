@@ -32,9 +32,9 @@
   }
 
   .crypto-type {
-    height: 100px;
-    width: 100px;
-    border-radius: 3px;
+    height: 7em;
+    width: 7em;
+    border-radius: 0.25em;
     margin-right: 2em;
     background: $NavyDark;
     display: flex;
@@ -44,5 +44,6 @@
 
   .crypto-icon {
     fill: $Primary;
+    height: 60%;
   }
 }

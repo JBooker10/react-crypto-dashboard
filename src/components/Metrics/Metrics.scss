@@ -1,0 +1,75 @@
+@import "./../../styles/colors.scss";
+
+.metrics {
+  display: block;
+  margin: 2.5em auto;
+  width: 15vw;
+  max-width: 320px;
+  min-width: 220px;
+
+  .metric-actions {
+    display: flex;
+    flex-direction: column;
+
+    .btn-primary {
+      background: $Primary;
+      color: $NavyDark;
+      border: none;
+      margin: 0.5em 0;
+      width: 100%;
+      font-weight: 600;
+      border-radius: 4px;
+      min-width: 200px;
+      max-width: 315px;
+      height: 45px;
+      font-size: 14px !important;
+      text-transform: uppercase;
+    }
+
+    .btn-secondary {
+      background: $Secondary;
+      color: $White;
+      margin: 0.5em 0;
+      border-radius: 4px;
+      height: 45px;
+      width: 100%;
+      max-width: 315px;
+      border: none;
+      min-width: 200px;
+      font-weight: 600;
+      font-size: 14px !important;
+      text-transform: uppercase;
+    }
+  }
+
+  .metrics-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 2em 0;
+
+    p {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      color: $White;
+      font-weight: 400;
+    }
+    .card {
+      margin: 0.2em 0;
+      background: $NavyDark;
+      border: 1px solid $Light;
+      height: 100px;
+      max-width: 315px;
+      min-width: 200px;
+      border-radius: 3px;
+      width: inherit;
+      font-size: 18px;
+      color: $White;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

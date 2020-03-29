@@ -486,7 +486,10 @@ const data = [
 ];
 
 export default function CryptoTimeSeries() {
-  const width = window.innerWidth / 1.68;
+  const width =
+    window.innerWidth >= 900
+      ? window.innerWidth / 1.68
+      : window.innerWidth - 20;
   const contentStyle = {
     background: "rgba(24, 27, 33, .95)",
     border: `1px solid ${Light}`,
@@ -500,7 +503,7 @@ export default function CryptoTimeSeries() {
         <h5>
           CryptoCompare Index: ETH <span className="chart-price">$270.10</span>
         </h5>
-        <AreaChart width={width} height={315} data={data}>
+        <AreaChart width={width} height={325} data={data}>
           <XAxis dataKey="name" hide={true} />
           <YAxis
             tick={true}

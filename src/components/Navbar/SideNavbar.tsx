@@ -10,11 +10,11 @@ export default function SideNavbar() {
         <br />
         <div className="navbar-item active">
           <PieChartIcon className="nav-icon" />
-          Dashboard
+          <span>Dashboard</span>
         </div>
         <div className="navbar-item">
           <PieChartIcon className="nav-icon" />
-          Trades
+          <span>Trades</span>
         </div>
       </div>
     </div>

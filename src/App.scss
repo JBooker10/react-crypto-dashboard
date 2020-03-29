@@ -7,4 +7,21 @@
 
 body {
   background: $NavyLight;
+  font-size: 62.5%;
+  font-size: 0.7em;
+}
+
+@media only screen and (max-width: 900px) {
+  .container {
+    width: 100vw;
+    margin: 8em 2em 2em 2em;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  body {
+    font-size: 70%;
+  }
 }
