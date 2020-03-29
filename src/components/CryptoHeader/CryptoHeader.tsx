@@ -1,10 +1,14 @@
 import React from "react";
+import Ethereum from "../Icons/Ethereum";
+import "./CryptoHeader.scss";
 
 export default function CryptoHeader() {
   return (
     <div className="crypto-header">
       <div className="crypto-head">
-        <div className="crypto-type"></div>
+        <div className="crypto-type">
+          <Ethereum className="crypto-icon" style={{ height: 60 }} />
+        </div>
         <h1>
           Ethereum <span className="symbol">ETC</span>
         </h1>

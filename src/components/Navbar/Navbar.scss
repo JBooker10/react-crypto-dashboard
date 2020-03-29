@@ -3,13 +3,42 @@
 @import "./../../../node_modules/spectre.css/src/navbar";
 
 .side-navbar {
-  display: grid;
-  grid-column: auto;
+  display: flex;
+  flex-direction: column;
   // display: block;
   width: 15vw;
 
   background: $NavyDark;
   height: 100vh;
+
+  .navbar-brand {
+    height: 89px;
+  }
+
+  .navbar-item {
+    padding: 15px 2.5em;
+    display: flex;
+    align-items: center;
+    color: $White;
+    background: none;
+    font-weight: 100;
+    cursor: pointer;
+
+    .nav-icon {
+      fill: $White;
+      height: 16px;
+      margin-right: 1.5em;
+    }
+  }
+
+  .active {
+    color: $Primary;
+    border-left: 1px solid $Primary;
+
+    .nav-icon {
+      fill: $Primary;
+    }
+  }
 }
 
 .navbar {
@@ -19,15 +48,24 @@
   width: 85vw;
   position: fixed;
 
+  .icon-search {
+    transform: scale(0.75);
+  }
+
   input {
     background: none;
     border: none;
     color: $White;
-    font-size: 18px;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 0 5px;
+    max-width: 400px;
   }
 
   input::placeholder {
-    color: $White !important;
+    color: $Lighter !important;
+    text-transform: none;
+    font-weight: 100;
   }
 }
 

@@ -1,0 +1,48 @@
+@import "./../../styles/colors.scss";
+
+.crypto-header {
+  padding: 2em 0;
+  display: flex;
+  justify-content: space-between;
+
+  .crypto-head {
+    display: flex;
+    align-items: center;
+    h1 {
+      font-weight: 200;
+    }
+  }
+
+  .crypto-price {
+    display: flex;
+    align-items: center;
+
+    p {
+      color: $Green;
+      margin-left: 0.5em;
+    }
+  }
+
+  h1 {
+    color: $White;
+  }
+
+  span.symbol {
+    color: $Light;
+  }
+
+  .crypto-type {
+    height: 100px;
+    width: 100px;
+    border-radius: 3px;
+    margin-right: 2em;
+    background: $NavyDark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .crypto-icon {
+    fill: $Primary;
+  }
+}

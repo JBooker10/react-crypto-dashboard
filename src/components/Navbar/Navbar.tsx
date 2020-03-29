@@ -6,7 +6,13 @@ export default function Navbar() {
     <header className="navbar">
       <section className="navbar-section">
         <div className="input-group input-inline">
-          <input className="" type="text" placeholder="Search Currency Name" />
+          <i className="icon icon-2x  icon-search"></i>
+          <input
+            className=""
+            type="text"
+            placeholder="Search Crypto Currency..."
+            autoFocus
+          />
         </div>
       </section>
       <section className="navbar-section">

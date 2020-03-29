@@ -16,51 +16,6 @@
   height: auto;
   margin-top: 6em;
   width: 80vw;
-  //   height: calc(100vh - 90px);
-
-  //   margin: 2.5em;
-  //   max-width: 1300px;
-}
-
-.crypto-header {
-  //   margin: 2.5em 0;
-  padding: 2em 0;
-  display: flex;
-  justify-content: space-between;
-
-  .crypto-head {
-    display: flex;
-    align-items: center;
-    h1 {
-      font-weight: 200;
-    }
-  }
-
-  .crypto-price {
-    display: flex;
-    align-items: center;
-
-    p {
-      color: $Green;
-      margin-left: 0.5em;
-    }
-  }
-
-  h1 {
-    color: $White;
-  }
-
-  span.symbol {
-    color: $Light;
-  }
-
-  .crypto-type {
-    height: 100px;
-    width: 100px;
-    border-radius: 3px;
-    margin-right: 2em;
-    background: $NavyDark;
-  }
 }
 
 .crypto-data {
@@ -84,19 +39,35 @@
   }
 }
 
+.crypto-actions {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    border: none;
+    background: none;
+    margin-top: 2em;
+    font-size: 14px;
+    padding: 0 12px;
+    color: $Grey;
+    cursor: pointer;
+  }
+
+  .active {
+    color: $Primary;
+  }
+
+  button:hover {
+    color: $Primary;
+  }
+}
+
 .metrics {
   display: block;
   margin: 2.5em auto;
-
   width: 15vw;
   max-width: 320px;
   min-width: 220px;
-  //   width: 350px;
-  //   display: flex;
-
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-content: center;
 
   .metric-actions {
     display: flex;
@@ -136,7 +107,6 @@
   .metrics-card {
     width: 100%;
     display: flex;
-    // align-items: center;
     flex-direction: column;
     margin: 2em 0;
 
@@ -148,6 +118,7 @@
       font-weight: 400;
     }
     .card {
+      margin: 0.2em 0;
       background: $NavyDark;
       border: 1px solid $Light;
       height: 100px;
@@ -165,15 +136,17 @@
   }
 }
 
+h5 {
+  font-weight: 200;
+}
+.chart-price {
+  color: $White;
+  font-weight: 500;
+  margin-left: 0.5em;
+}
+
 .line-chart {
   margin-top: 3em;
-  h1 {
-    font-weight: 100;
-  }
-  span {
-    color: $White;
-    font-weight: 600;
-  }
 }
 
 /* Extra small devices (phones, 600px and down) */

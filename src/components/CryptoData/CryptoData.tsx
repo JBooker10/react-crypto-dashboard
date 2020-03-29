@@ -1,5 +1,5 @@
 import React from "react";
-import CryptoLineChart from "./CryptoLineChart";
+import CryptoTimeSeries from "./CryptoTimeSeries";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 export default function CryptoData() {
@@ -14,7 +14,7 @@ export default function CryptoData() {
       </TabList>
 
       <TabPanel>
-        <CryptoLineChart />
+        <CryptoTimeSeries />
       </TabPanel>
       <TabPanel>
         <h2>Analysis</h2>
