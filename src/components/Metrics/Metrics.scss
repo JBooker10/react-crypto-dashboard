@@ -11,9 +11,7 @@
     display: flex;
     flex-direction: column;
 
-    .btn-primary {
-      background: $Primary;
-      color: $NavyDark;
+    .button {
       border: none;
       margin: 0.5em 0;
       width: 100%;
@@ -24,21 +22,30 @@
       height: 45px;
       font-size: 14px !important;
       text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: $PrimaryGradient;
+    }
+
+    .btn-primary:active {
+      background: $PrimaryGradient;
+      transform: scale(1.01);
+    }
+
+    .btn-secondary:active {
+      transform: scale(1.01);
+    }
+
+    .btn-primary {
+      background: $Primary;
+      color: $NavyDark;
     }
 
     .btn-secondary {
       background: $Secondary;
       color: $White;
-      margin: 0.5em 0;
-      border-radius: 4px;
-      height: 45px;
-      width: 100%;
-      max-width: 315px;
-      border: none;
-      min-width: 200px;
-      font-weight: 600;
-      font-size: 14px !important;
-      text-transform: uppercase;
     }
   }
 
@@ -64,7 +71,6 @@
       min-width: 200px;
       border-radius: 3px;
       width: inherit;
-      font-size: 18px;
       color: $White;
       display: flex;
       text-align: center;

@@ -5,9 +5,9 @@ export default function Metric({ name, value, percentage }: any) {
     <div className="metrics-card">
       <p>{name}</p>
       <div className="card">
-        <p>
+        <h6>
           $ {value} <span className="percentage">{percentage}</span>
-        </p>
+        </h6>
       </div>
     </div>
   );

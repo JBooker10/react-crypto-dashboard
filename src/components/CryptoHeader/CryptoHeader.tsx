@@ -2,7 +2,13 @@ import React from "react";
 import Ethereum from "../Icons/Ethereum";
 import "./CryptoHeader.scss";
 
-export default function CryptoHeader() {
+export default function CryptoHeader({
+  name,
+  symbol,
+  price,
+  changePercent
+}: any) {
+  console.log(price);
   return (
     <div className="crypto-header">
       <div className="crypto-head">
@@ -10,14 +16,21 @@ export default function CryptoHeader() {
           <Ethereum className="crypto-icon" />
         </div>
         <h1>
-          Ethereum <span className="symbol">ETC</span>
+          {name} <span className="symbol">{symbol}</span>
         </h1>
       </div>
       <div className="crypto-price">
-        <h1>2,896.65</h1>
-        <p>^3.25%</p>
+        <h1>{price}</h1>
+        <p>{changePercent && changePercent.substring(0, 5)}</p>
         <div></div>
       </div>
     </div>
   );
 }
+
+CryptoHeader.defaultProps = {
+  name: "Ethereum",
+  symbol: "ETC",
+  price: 216.65,
+  changePercent: "3.29941"
+};

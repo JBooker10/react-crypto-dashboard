@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CryptoTimeSeriesActions from "./CryptoTimeSeriesActions";
 import { Primary, Lighter, Light, White, Navy } from "./../../styles/colors";
+import axios from "axios";
+import moment from "moment";
+import numeral from "numeral";
+
 import {
   Area,
   AreaChart,
@@ -12,480 +16,8 @@ import {
   Bar
 } from "recharts";
 
-const data2 = [
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page B",
-    uv: 3500,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page G",
-    uv: 4900,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page E",
-    uv: 1390,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page A",
-    uv: 3500,
-    pv: 6700,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 7100,
-    pv: 5698,
-    amt: 2210
-  },
-  {
-    name: "Page C",
-    uv: 2701,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page B",
-    uv: 3500,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page G",
-    uv: 4900,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page E",
-    uv: 1390,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page A",
-    uv: 3500,
-    pv: 6700,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 7100,
-    pv: 5698,
-    amt: 2210
-  },
-  {
-    name: "Page C",
-    uv: 2701,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page B",
-    uv: 3500,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page G",
-    uv: 4900,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page E",
-    uv: 1390,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page A",
-    uv: 3500,
-    pv: 6700,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 7100,
-    pv: 5698,
-    amt: 2210
-  },
-  {
-    name: "Page C",
-    uv: 2701,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  }
-];
-const data = [
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page B",
-    uv: 3500,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page G",
-    uv: 4900,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page E",
-    uv: 1390,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page A",
-    uv: 3500,
-    pv: 6700,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 7100,
-    pv: 5698,
-    amt: 2210
-  },
-  {
-    name: "Page C",
-    uv: 2701,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 4600,
-    pv: 4300,
-    amt: 2100
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  }
-];
-
 export default function CryptoTimeSeries() {
+  const [historicalPrices, setHistoricalPrices] = useState([] as any);
   const width =
     window.innerWidth >= 900
       ? window.innerWidth / 1.68
@@ -496,6 +28,21 @@ export default function CryptoTimeSeries() {
     borderRadius: "3px"
   };
 
+  useEffect(() => getHistoricalPrice("60"), historicalPrices);
+
+  const getHistoricalPrice = (period: string) => {
+    axios
+      .get(
+        `https://min-api.cryptocompare.com/data/v2/histoday?fsym=ETH&tsym=USD&limit=${period}`
+      )
+      .then(res => {
+        setHistoricalPrices(res.data.Data.Data);
+      })
+      .then(err => console.log(err));
+  };
+
+  console.log(moment(1585627113).format("MMMM DD YYYY"));
+
   return (
     <>
       <CryptoTimeSeriesActions />
@@ -503,12 +50,15 @@ export default function CryptoTimeSeries() {
         <h5>
           CryptoCompare Index: ETH <span className="chart-price">$270.10</span>
         </h5>
-        <AreaChart width={width} height={325} data={data}>
-          <XAxis dataKey="name" hide={true} />
+        <AreaChart width={width} height={330} data={historicalPrices}>
+          <XAxis dataKey="time" hide={true} />
           <YAxis
+            domain={["dataMin", "dataMax"]}
             tick={true}
             tickLine={false}
+            allowDecimals={false}
             orientation="right"
+            dataKey="open"
             axisLine={false}
             tickCount={5}
             stroke={White}
@@ -516,7 +66,7 @@ export default function CryptoTimeSeries() {
           <CartesianGrid vertical={false} stroke={Light} strokeDasharray="8" />
           <Area
             type="linear"
-            dataKey="uv"
+            dataKey="open"
             stroke={Primary}
             fillOpacity={0}
             fill={Primary}
@@ -527,30 +77,38 @@ export default function CryptoTimeSeries() {
               stroke: Lighter,
               strokeDasharray: 8
             }}
+            labelFormatter={label =>
+              moment.unix(label as any).format("MM/DD/YYYY")
+            }
             contentStyle={contentStyle}
           />
         </AreaChart>
       </div>
       <div>
         <h5>
-          Volume: ETH <span className="chart-price"> $1270.11</span>
+          Volume: ETH <span className="chart-price">$1270.11</span>
         </h5>
-        <BarChart width={width} height={100} data={data2}>
+        <BarChart width={width} height={100} data={historicalPrices}>
           <YAxis
             tick={true}
+            tickFormatter={tick => numeral(tick).format("0.0a")}
             tickLine={false}
             orientation="right"
             axisLine={false}
             tickCount={1}
             stroke={White}
           />
+          <XAxis dataKey="time" hide={true} />
           <Tooltip
             cursor={{
               fill: Navy
             }}
             contentStyle={contentStyle}
+            labelFormatter={label =>
+              moment.unix(label as any).format("MM/DD/YYYY")
+            }
           />
-          <Bar dataKey="uv" fill={Primary} />
+          <Bar dataKey="volumeto" fill={Primary} />
         </BarChart>
       </div>
     </>
