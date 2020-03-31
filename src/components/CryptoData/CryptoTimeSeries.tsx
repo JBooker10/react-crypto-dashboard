@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import CryptoTimeSeriesActions from "./CryptoTimeSeriesActions";
+import React, { useEffect, useContext } from "react";
+
 import { Primary, Lighter, Light, White, Navy } from "./../../styles/colors";
-import axios from "axios";
+import { chartWidth, chartToolTipStyle } from "./../../styles";
 import moment from "moment";
 import numeral from "numeral";
-
 import {
   Area,
   AreaChart,
@@ -16,32 +15,14 @@ import {
   Bar
 } from "recharts";
 
+import CryptoTimeSeriesActions from "./CryptoTimeSeriesActions";
+import cryptoCurrencyCTX from "./../../context/cryptocurrency/cryptoCurrencyContext";
+
 export default function CryptoTimeSeries() {
-  const [historicalPrices, setHistoricalPrices] = useState([] as any);
-  const width =
-    window.innerWidth >= 900
-      ? window.innerWidth / 1.68
-      : window.innerWidth - 20;
-  const contentStyle = {
-    background: "rgba(24, 27, 33, .95)",
-    border: `1px solid ${Light}`,
-    borderRadius: "3px"
-  };
+  const cryptoCTX = useContext(cryptoCurrencyCTX);
+  const { getDailyOHLCV, dailyOHLCV, loading } = cryptoCTX;
 
-  useEffect(() => getHistoricalPrice("60"), historicalPrices);
-
-  const getHistoricalPrice = (period: string) => {
-    axios
-      .get(
-        `https://min-api.cryptocompare.com/data/v2/histoday?fsym=ETH&tsym=USD&limit=${period}`
-      )
-      .then(res => {
-        setHistoricalPrices(res.data.Data.Data);
-      })
-      .then(err => console.log(err));
-  };
-
-  console.log(moment(1585627113).format("MMMM DD YYYY"));
+  useEffect(() => getDailyOHLCV("30", "ETH"), [loading]);
 
   return (
     <>
@@ -50,7 +31,7 @@ export default function CryptoTimeSeries() {
         <h5>
           CryptoCompare Index: ETH <span className="chart-price">$270.10</span>
         </h5>
-        <AreaChart width={width} height={330} data={historicalPrices}>
+        <AreaChart width={chartWidth} height={330} data={dailyOHLCV}>
           <XAxis dataKey="time" hide={true} />
           <YAxis
             domain={["dataMin", "dataMax"]}
@@ -80,7 +61,7 @@ export default function CryptoTimeSeries() {
             labelFormatter={label =>
               moment.unix(label as any).format("MM/DD/YYYY")
             }
-            contentStyle={contentStyle}
+            contentStyle={chartToolTipStyle}
           />
         </AreaChart>
       </div>
@@ -88,7 +69,7 @@ export default function CryptoTimeSeries() {
         <h5>
           Volume: ETH <span className="chart-price">$1270.11</span>
         </h5>
-        <BarChart width={width} height={100} data={historicalPrices}>
+        <BarChart width={chartWidth} height={100} data={dailyOHLCV}>
           <YAxis
             tick={true}
             tickFormatter={tick => numeral(tick).format("0.0a")}
@@ -103,7 +84,7 @@ export default function CryptoTimeSeries() {
             cursor={{
               fill: Navy
             }}
-            contentStyle={contentStyle}
+            contentStyle={chartToolTipStyle}
             labelFormatter={label =>
               moment.unix(label as any).format("MM/DD/YYYY")
             }

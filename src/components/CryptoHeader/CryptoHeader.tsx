@@ -8,7 +8,6 @@ export default function CryptoHeader({
   price,
   changePercent
 }: any) {
-  console.log(price);
   return (
     <div className="crypto-header">
       <div className="crypto-head">
