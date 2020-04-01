@@ -6,7 +6,11 @@ export default function Metric({ name, value, percentage }: any) {
       <p>{name}</p>
       <div className="card">
         <h6>
-          $ {value} <span className="percentage">{percentage}</span>
+          {value}{" "}
+          <span className="percentage">
+            {percentage}
+            {percentage && "%"}
+          </span>
         </h6>
       </div>
     </div>

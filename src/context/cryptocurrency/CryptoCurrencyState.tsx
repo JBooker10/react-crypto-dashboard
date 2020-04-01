@@ -3,25 +3,38 @@ import axios from "axios";
 
 import { cryptoCurrencyReducer } from "./cryptoCurrencyReducer";
 import CryptoCurrencyContext from "./cryptoCurrencyContext";
-import { GET_DAILY_OHLCV, GET_WS_PRICE, GET_ASSET } from "../types";
 
-const cryptoCompareAPI = "https://min-api.cryptocompare.com/data/v2/";
-const coinCapAPI = "wss://ws.coincap.io/";
+import {
+  GET_DAILY_OHLCV,
+  GET_WS_PRICE,
+  GET_ASSET,
+  GET_STATISTICS
+} from "../types";
+import {
+  COIN_CAP_URI,
+  CRYPTO_COMPARE_URI,
+  COIN_CAP_WS_URI
+} from "./../../config";
 
 export default function CryptoCurrencyState(props: any): JSX.Element {
   const initialState: any = {
     price: 0.0,
     dailyOHLCV: [],
     asset: {},
+    stats: {},
     loading: true
   };
 
   const [state, dispatch] = useReducer(cryptoCurrencyReducer, initialState);
 
-  const getDailyOHLCV = (period: string, symbol: string) => {
+  const getDailyOHLCV = (
+    period: string,
+    symbol: string,
+    history = "histoday"
+  ) => {
     axios
       .get(
-        `${cryptoCompareAPI}histoday?fsym=${symbol}&tsym=USD&limit=${period}`
+        `${CRYPTO_COMPARE_URI}v2/${history}?fsym=${symbol}&tsym=USD&limit=${period}`
       )
       .then(res => {
         dispatch({
@@ -29,22 +42,35 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
           payload: res.data.Data.Data
         });
       })
-      .then(err => console.log(err));
+      .catch(err => console.log(err));
   };
 
   const getAsset = (symbol: string) => {
-    axios(`${coinCapAPI}v2/assets/${symbol}`)
-      .then(res =>
+    axios(`${COIN_CAP_URI}assets/${symbol}`)
+      .then(res => {
         dispatch({
           type: GET_ASSET,
           payload: res.data.data
-        })
-      )
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  const getStats = (symbol: string) => {
+    axios
+      .get(`${CRYPTO_COMPARE_URI}pricemultifull?fsyms=${symbol}&tsyms=USD`)
+      .then(res => {
+        console.log(res);
+        dispatch({
+          type: GET_STATISTICS,
+          payload: res.data.DISPLAY[symbol.toUpperCase()].USD
+        });
+      })
       .catch(err => console.log(err));
   };
 
   const getRealTimePrice = (symbol: string): void => {
-    const pricesWs = new WebSocket(`${coinCapAPI}prices?assets=${symbol}`);
+    const pricesWs = new WebSocket(`${COIN_CAP_WS_URI}prices?assets=${symbol}`);
     pricesWs.onmessage = (msg: any) => {
       const data = JSON.parse(msg.data);
       dispatch({
@@ -54,7 +80,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     };
   };
 
-  const { asset, dailyOHLCV, price, loading } = state;
+  const { asset, dailyOHLCV, price, loading, stats } = state;
 
   return (
     <CryptoCurrencyContext.Provider
@@ -63,10 +89,12 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
         dailyOHLCV,
         price,
         loading,
+        stats,
 
         getDailyOHLCV,
         getRealTimePrice,
-        getAsset
+        getAsset,
+        getStats
       }}
     >
       {props.children}

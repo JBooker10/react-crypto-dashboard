@@ -18,23 +18,25 @@ import {
 import CryptoTimeSeriesActions from "./CryptoTimeSeriesActions";
 import cryptoCurrencyCTX from "./../../context/cryptocurrency/cryptoCurrencyContext";
 
-export default function CryptoTimeSeries() {
+export default function CryptoTimeSeries({ symbol }: any) {
   const cryptoCTX = useContext(cryptoCurrencyCTX);
   const { getDailyOHLCV, dailyOHLCV, loading } = cryptoCTX;
 
-  useEffect(() => getDailyOHLCV("30", "ETH"), [loading]);
+  // eslint-disable-next-line
+  useEffect(() => getDailyOHLCV("60", "BTC"), [loading]);
 
   return (
     <>
-      <CryptoTimeSeriesActions />
+      <CryptoTimeSeriesActions getDailyOHLCV={getDailyOHLCV} />
       <div className="line-chart">
         <h5>
-          CryptoCompare Index: ETH <span className="chart-price">$270.10</span>
+          CryptoCompare Index:{symbol}{" "}
+          <span className="chart-price">$270.10</span>
         </h5>
         <AreaChart width={chartWidth} height={330} data={dailyOHLCV}>
           <XAxis dataKey="time" hide={true} />
           <YAxis
-            domain={["dataMin", "dataMax"]}
+            domain={["auto", "auto"]}
             tick={true}
             tickLine={false}
             allowDecimals={false}
@@ -55,11 +57,11 @@ export default function CryptoTimeSeries() {
           />
           <Tooltip
             cursor={{
-              stroke: Lighter,
+              stroke: White,
               strokeDasharray: 8
             }}
             labelFormatter={label =>
-              moment.unix(label as any).format("MM/DD/YYYY")
+              moment.unix(label as any).format("MM/DD/YYYY hh:mm a")
             }
             contentStyle={chartToolTipStyle}
           />
@@ -67,7 +69,7 @@ export default function CryptoTimeSeries() {
       </div>
       <div>
         <h5>
-          Volume: ETH <span className="chart-price">$1270.11</span>
+          Volume: {symbol} <span className="chart-price">$1270.11</span>
         </h5>
         <BarChart width={chartWidth} height={100} data={dailyOHLCV}>
           <YAxis
@@ -86,7 +88,7 @@ export default function CryptoTimeSeries() {
             }}
             contentStyle={chartToolTipStyle}
             labelFormatter={label =>
-              moment.unix(label as any).format("MM/DD/YYYY")
+              moment.unix(label as any).format("MM/DD/YYYY hh:mm a")
             }
           />
           <Bar dataKey="volumeto" fill={Primary} />

@@ -1,4 +1,9 @@
-import { GET_WS_PRICE, GET_DAILY_OHLCV, GET_ASSET } from "../types";
+import {
+  GET_WS_PRICE,
+  GET_DAILY_OHLCV,
+  GET_ASSET,
+  GET_STATISTICS
+} from "../types";
 
 export function cryptoCurrencyReducer(state: any, action: any) {
   switch (action.type) {
@@ -18,6 +23,12 @@ export function cryptoCurrencyReducer(state: any, action: any) {
       return {
         ...state,
         asset: action.payload,
+        loading: false
+      };
+    case GET_STATISTICS:
+      return {
+        ...state,
+        stats: action.payload,
         loading: false
       };
     default:

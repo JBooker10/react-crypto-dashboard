@@ -10,11 +10,21 @@ import "./Dashboard.scss";
 
 export default function Dashboard() {
   const cryptoCTX = useContext(cryptoCurrencyCTX);
-  const { getAsset, asset, getRealTimePrice, price, loading } = cryptoCTX;
+  const {
+    getAsset,
+    getStats,
+    asset,
+    getRealTimePrice,
+    price,
+    loading,
+    stats
+  } = cryptoCTX;
 
   useEffect(() => {
-    getRealTimePrice("ethereum");
-    getAsset("ethereum");
+    getRealTimePrice("bitcoin");
+    getAsset("bitcoin");
+    getStats("btc");
+    // eslint-disable-next-line
   }, [loading]);
 
   return (
@@ -24,16 +34,22 @@ export default function Dashboard() {
         <div className="columns">
           <div className="column col-9 col-sm-auto col-mx-auto">
             <CryptoHeader
-              price={parseFloat(price).toFixed(3)}
+              price={parseFloat(price).toFixed(2)}
               name={asset.name}
               symbol={asset.symbol}
               changePercent={asset.changePercent24Hr}
             />
             <div className="columns">
-              <CryptoData />
+              <CryptoData symbol={asset.symbol} />
             </div>
           </div>
-          <Metrics />
+          <Metrics
+            high24={stats.HIGHDAY}
+            open24={stats.OPENDAY}
+            change24={stats.CHANGE24HOUR}
+            changePercent={stats.CHANGEPCT24HOUR}
+            volume={stats.VOLUME24HOURTO}
+          />
         </div>
       </div>
     </div>

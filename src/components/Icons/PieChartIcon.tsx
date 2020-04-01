@@ -1,6 +1,7 @@
 import React from "react";
+import { SVGIconProps } from "./../type";
 
-export default function PieChartIcon({ style, className }: any) {
+export default function PieChartIcon({ style, className }: SVGIconProps) {
   return (
     <svg
       x="0"

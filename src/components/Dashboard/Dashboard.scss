@@ -53,6 +53,10 @@
     cursor: pointer;
   }
 
+  button:active {
+    color: $Primary;
+  }
+
   .active {
     color: $Primary;
   }

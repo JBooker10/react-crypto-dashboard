@@ -5,7 +5,7 @@ import "./Metrics.scss";
 export default function Metrics({
   volume,
   high24,
-  close24,
+  open24,
   change24,
   changePercent
 }: any) {
@@ -18,7 +18,7 @@ export default function Metrics({
       <Metric name="Change 24h" value={change24} percentage={changePercent} />
       <Metric name="Volume 24" value={volume} />
       <Metric name="High 24" value={high24} />
-      <Metric name="Close 24" value={close24} />
+      <Metric name="Open 24" value={open24} />
     </div>
   );
 }
@@ -27,6 +27,6 @@ Metrics.defaultProps = {
   volume: 8067826541,
   change24: 15.11,
   high24: 271.63,
-  close24: 249.26,
+  open24: 249.26,
   changePercent: 9.6
 };

@@ -1,6 +1,7 @@
 import React from "react";
+import { SVGIconProps } from "./../type";
 
-function Ethereum({ style, className }: any) {
+function Ethereum({ style, className }: SVGIconProps) {
   return (
     <svg
       x="0"
