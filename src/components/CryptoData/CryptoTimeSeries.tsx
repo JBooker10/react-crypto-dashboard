@@ -6,7 +6,8 @@ import moment from "moment";
 import numeral from "numeral";
 import {
   Area,
-  AreaChart,
+  Line,
+  LineChart,
   YAxis,
   XAxis,
   CartesianGrid,
@@ -18,22 +19,33 @@ import {
 import CryptoTimeSeriesActions from "./CryptoTimeSeriesActions";
 import cryptoCurrencyCTX from "./../../context/cryptocurrency/cryptoCurrencyContext";
 
-export default function CryptoTimeSeries({ symbol }: any) {
+export default function CryptoTimeSeries() {
   const cryptoCTX = useContext(cryptoCurrencyCTX);
-  const { getDailyOHLCV, dailyOHLCV, loading } = cryptoCTX;
+  const { getDailyOHLCV, dailyOHLCV, searchAsset, loading } = cryptoCTX;
 
   // eslint-disable-next-line
-  useEffect(() => getDailyOHLCV("60", "BTC"), [loading]);
+  useEffect(() => getDailyOHLCV("60", searchAsset.symbol), [
+    loading,
+    searchAsset
+  ]);
 
   return (
     <>
-      <CryptoTimeSeriesActions getDailyOHLCV={getDailyOHLCV} />
+      <CryptoTimeSeriesActions
+        getDailyOHLCV={getDailyOHLCV}
+        symbol={searchAsset.symbol}
+      />
       <div className="line-chart">
         <h5>
-          CryptoCompare Index:{symbol}{" "}
+          CryptoCompare Index:{searchAsset.symbol}{" "}
           <span className="chart-price">$270.10</span>
         </h5>
-        <AreaChart width={chartWidth} height={330} data={dailyOHLCV}>
+        <LineChart
+          width={chartWidth}
+          height={330}
+          data={dailyOHLCV}
+          style={{ zIndex: "1 !important" }}
+        >
           <XAxis dataKey="time" hide={true} />
           <YAxis
             domain={["auto", "auto"]}
@@ -47,9 +59,10 @@ export default function CryptoTimeSeries({ symbol }: any) {
             stroke={White}
           />
           <CartesianGrid vertical={false} stroke={Light} strokeDasharray="8" />
-          <Area
+          <Line
             type="linear"
             dataKey="open"
+            dot={false}
             stroke={Primary}
             fillOpacity={0}
             fill={Primary}
@@ -65,11 +78,12 @@ export default function CryptoTimeSeries({ symbol }: any) {
             }
             contentStyle={chartToolTipStyle}
           />
-        </AreaChart>
+        </LineChart>
       </div>
       <div>
         <h5>
-          Volume: {symbol} <span className="chart-price">$1270.11</span>
+          Volume: {searchAsset.symbol}{" "}
+          <span className="chart-price">$1270.11</span>
         </h5>
         <BarChart width={chartWidth} height={100} data={dailyOHLCV}>
           <YAxis

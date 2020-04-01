@@ -47,6 +47,7 @@
   background: $Navy;
   width: 85vw;
   position: fixed;
+  z-index: 100;
 
   .icon-search {
     transform: scale(0.75);
@@ -56,15 +57,63 @@
     background: none;
     border: none;
     color: $White;
-    font-size: 20px;
-    text-transform: uppercase;
+    font-size: 24px;
     padding: 0 0.5em;
-    max-width: 400px;
+    width: 33vw;
+    outline: none;
+    // max-width: 400px;
   }
 
   input::placeholder {
     color: $Lighter !important;
     text-transform: none;
+    font-weight: 100;
+  }
+}
+
+.filter-search {
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  color: rgb(218, 218, 218);
+  padding: 1.5em 3em;
+  backdrop-filter: blur(7px) grayscale(30%);
+  filter: blur(120%);
+  -moz-backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  position: fixed;
+  z-index: 1000 !important;
+  left: 0;
+  top: 80px;
+  height: 100vh;
+  width: 100vw;
+
+  .search-item {
+    padding: 0.75em;
+    display: flex;
+    max-width: 80vw;
+    flex-direction: column;
+
+    h1 {
+      padding: 0;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .search-item:hover {
+    color: white;
+    cursor: pointer;
+    text-shadow: 0px 30px 10px rgba(0, 0, 0, 1);
+    transition: 500ms;
+    transform: scale(1.005);
+  }
+
+  .secondary {
     font-weight: 100;
   }
 }

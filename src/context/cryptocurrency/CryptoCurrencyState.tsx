@@ -8,7 +8,9 @@ import {
   GET_DAILY_OHLCV,
   GET_WS_PRICE,
   GET_ASSET,
-  GET_STATISTICS
+  GET_TOP_ASSETS,
+  GET_STATISTICS,
+  SEARCH_ASSET
 } from "../types";
 import {
   COIN_CAP_URI,
@@ -21,8 +23,13 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     price: 0.0,
     dailyOHLCV: [],
     asset: {},
+    assets: [],
     stats: {},
-    loading: true
+    loading: true,
+    searchAsset: {
+      symbol: "BTC",
+      name: "bitcoin"
+    }
   };
 
   const [state, dispatch] = useReducer(cryptoCurrencyReducer, initialState);
@@ -80,21 +87,54 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     };
   };
 
-  const { asset, dailyOHLCV, price, loading, stats } = state;
+  const getTopAssets = (): void => {
+    axios(`${COIN_CAP_URI}assets`)
+      .then(res => {
+        dispatch({
+          type: GET_TOP_ASSETS,
+          payload: res.data.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  const searchNewAsset = (symbol: string, name: string) => {
+    dispatch({
+      type: SEARCH_ASSET,
+      payload: {
+        symbol,
+        name
+      }
+    });
+  };
+
+  const {
+    searchAsset,
+    asset,
+    assets,
+    dailyOHLCV,
+    price,
+    loading,
+    stats
+  } = state;
 
   return (
     <CryptoCurrencyContext.Provider
       value={{
         asset,
+        assets,
         dailyOHLCV,
         price,
         loading,
         stats,
+        searchAsset,
 
         getDailyOHLCV,
         getRealTimePrice,
+        getTopAssets,
         getAsset,
-        getStats
+        getStats,
+        searchNewAsset
       }}
     >
       {props.children}

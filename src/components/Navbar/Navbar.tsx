@@ -1,19 +1,12 @@
 import React from "react";
+import SearchBar from "./SearchBar";
 import "./Navbar.scss";
 
 export default function Navbar() {
   return (
     <header className="navbar">
       <section className="navbar-section">
-        <div className="input-group input-inline">
-          <i className="icon icon-2x  icon-search"></i>
-          <input
-            className=""
-            type="text"
-            placeholder="Search Crypto Currency..."
-            autoFocus
-          />
-        </div>
+        <SearchBar />
       </section>
       <section className="navbar-section">
         <figure className="avatar avatar-lg" data-initial="JB">

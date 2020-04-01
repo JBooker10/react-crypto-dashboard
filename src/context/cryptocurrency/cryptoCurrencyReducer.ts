@@ -2,7 +2,9 @@ import {
   GET_WS_PRICE,
   GET_DAILY_OHLCV,
   GET_ASSET,
-  GET_STATISTICS
+  GET_STATISTICS,
+  GET_TOP_ASSETS,
+  SEARCH_ASSET
 } from "../types";
 
 export function cryptoCurrencyReducer(state: any, action: any) {
@@ -29,6 +31,18 @@ export function cryptoCurrencyReducer(state: any, action: any) {
       return {
         ...state,
         stats: action.payload,
+        loading: false
+      };
+    case GET_TOP_ASSETS:
+      return {
+        ...state,
+        assets: action.payload,
+        loading: false
+      };
+    case SEARCH_ASSET:
+      return {
+        ...state,
+        searchAsset: action.payload,
         loading: false
       };
     default:

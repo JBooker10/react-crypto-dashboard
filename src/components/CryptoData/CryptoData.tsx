@@ -2,7 +2,7 @@ import React from "react";
 import CryptoTimeSeries from "./CryptoTimeSeries";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
-export default function CryptoData({ symbol }: any) {
+export default function CryptoData() {
   return (
     <Tabs className="column crypto-data">
       <TabList className="tab tab-block">
@@ -14,7 +14,7 @@ export default function CryptoData({ symbol }: any) {
       </TabList>
 
       <TabPanel>
-        <CryptoTimeSeries symbol={symbol} />
+        <CryptoTimeSeries />
       </TabPanel>
       <TabPanel>
         <h2>Analysis</h2>

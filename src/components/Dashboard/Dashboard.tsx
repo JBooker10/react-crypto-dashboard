@@ -13,6 +13,7 @@ export default function Dashboard() {
   const {
     getAsset,
     getStats,
+    searchAsset,
     asset,
     getRealTimePrice,
     price,
@@ -21,11 +22,11 @@ export default function Dashboard() {
   } = cryptoCTX;
 
   useEffect(() => {
-    getRealTimePrice("bitcoin");
-    getAsset("bitcoin");
-    getStats("btc");
+    getRealTimePrice(searchAsset.name);
+    getAsset(searchAsset.name);
+    getStats(searchAsset.symbol);
     // eslint-disable-next-line
-  }, [loading]);
+  }, [loading, searchAsset]);
 
   return (
     <div className="main">
@@ -40,7 +41,7 @@ export default function Dashboard() {
               changePercent={asset.changePercent24Hr}
             />
             <div className="columns">
-              <CryptoData symbol={asset.symbol} />
+              <CryptoData />
             </div>
           </div>
           <Metrics
