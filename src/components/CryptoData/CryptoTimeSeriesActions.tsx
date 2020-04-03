@@ -16,10 +16,10 @@ export default function CryptoTimeSeriesActions({
         <button onClick={() => getDailyOHLCV("168", symbol, "histohour")}>
           Week
         </button>
-        <button className="active" onClick={() => getDailyOHLCV("30", symbol)}>
-          Month
+        <button onClick={() => getDailyOHLCV("30", symbol)}>Month</button>
+        <button className="active" onClick={() => getDailyOHLCV("180", symbol)}>
+          6 Month
         </button>
-        <button onClick={() => getDailyOHLCV("180", symbol)}>6 Month</button>
         <button onClick={() => getDailyOHLCV("365", symbol)}>Year</button>
       </div>
 

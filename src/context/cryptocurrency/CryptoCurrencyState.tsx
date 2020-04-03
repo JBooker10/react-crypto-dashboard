@@ -32,8 +32,8 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     quote: {},
     tradingSignals: {},
     searchAsset: {
-      symbol: "ETH",
-      name: "ethereum"
+      symbol: "BTC",
+      name: "bitcoin"
     },
     priceWs: null
   };

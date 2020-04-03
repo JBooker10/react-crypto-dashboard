@@ -27,7 +27,7 @@ export default function CryptoTimeSeries({
   const [hoverData, setHoverData] = useState({} as any);
 
   const showTooltipData = (data: any) => {
-    if (data.payload[0]) {
+    if (data.payload && data.payload[0]) {
       setHoverData(data.payload[0].payload);
     }
 

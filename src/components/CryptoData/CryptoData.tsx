@@ -17,7 +17,7 @@ export default function CryptoData() {
 
   useEffect(() => {
     getTradingSignals(searchAsset.symbol);
-    getDailyOHLCV("30", searchAsset.symbol);
+    getDailyOHLCV("180", searchAsset.symbol);
     // eslint-disable-next-line
   }, [searchAsset, loading]);
 
