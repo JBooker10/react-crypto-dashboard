@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   width: 15vw;
+  position: fixed;
 
   background: $NavyDark;
   height: 100vh;
@@ -56,7 +57,7 @@
   width: 85vw;
   position: fixed;
   z-index: 100;
-
+  left: 15vw;
   .icon-search {
     transform: scale(0.75);
   }
