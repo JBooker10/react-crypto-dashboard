@@ -37,6 +37,83 @@
     padding-bottom: 1em;
     border-bottom: 1px solid;
   }
+
+  .analysis {
+    h2 {
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .analysis-card {
+      border: 1px solid $Light;
+      background: $NavyDark;
+      height: 135px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 300px;
+      margin: 1em;
+      border-radius: 3px;
+      padding: 3em 1em;
+
+      .sentiment {
+        color: white;
+        font-weight: 100;
+        margin-bottom: 1em;
+      }
+
+      .bar {
+        background: $NavyDark;
+        .bar-item {
+          background: $Primary;
+        }
+      }
+    }
+
+    .crypto-radar-chart {
+      display: flex;
+      justify-content: center;
+
+      .recharts-surface {
+        display: flex;
+        justify-content: center;
+      }
+
+      tspan {
+        fill: $White;
+        color: $White;
+      }
+    }
+
+    .crypto-analysis {
+      text-align: center;
+      border: 1px solid $Light;
+      display: flex;
+      flex-direction: column;
+      margin: 1em;
+      height: 20vh;
+      justify-content: center;
+      border-radius: 3px;
+
+      h1 {
+        margin: 0;
+        padding: 0;
+      }
+
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
 }
 
 .crypto-actions {
@@ -76,5 +153,18 @@ h5 {
 }
 
 .line-chart {
-  margin-top: 3em;
+  margin-top: 2em;
+
+  h5:last-child {
+    font-size: 1.2em;
+    color: rgba(216, 216, 216, 0.865);
+    margin-right: 0.5em;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+  }
 }

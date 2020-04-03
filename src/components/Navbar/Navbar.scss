@@ -12,6 +12,14 @@
 
   .navbar-brand {
     height: 89px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      fill: #fff;
+      height: 30px;
+    }
   }
 
   .navbar-item {
@@ -59,7 +67,7 @@
     color: $White;
     font-size: 24px;
     padding: 0 0.5em;
-    width: 33vw;
+    width: 60vw;
     outline: none;
     // max-width: 400px;
   }
@@ -76,7 +84,7 @@
   display: flex;
   flex-direction: column;
   color: rgb(218, 218, 218);
-  padding: 1.5em 3em;
+  padding: 1.5em 4em;
   backdrop-filter: blur(7px) grayscale(30%);
   filter: blur(120%);
   -moz-backdrop-filter: blur(7px);

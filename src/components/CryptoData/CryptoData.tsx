@@ -1,23 +1,45 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import CryptoTimeSeries from "./CryptoTimeSeries";
+import cryptoCurrencyCTX from "./../../context/cryptocurrency/cryptoCurrencyContext";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import Analysis from "./Analysis";
 
 export default function CryptoData() {
+  const cryptoCTX = useContext(cryptoCurrencyCTX);
+  const {
+    tradingSignals,
+    getTradingSignals,
+    loading,
+    searchAsset,
+    getDailyOHLCV,
+    dailyOHLCV
+  } = cryptoCTX;
+
+  useEffect(() => {
+    getTradingSignals(searchAsset.symbol);
+    getDailyOHLCV("30", searchAsset.symbol);
+    // eslint-disable-next-line
+  }, [searchAsset, loading]);
+
   return (
     <Tabs className="column crypto-data">
       <TabList className="tab tab-block">
         <Tab className="tab-item active">Overview</Tab>
         <Tab className="tab-item active">Analysis</Tab>
-        <Tab className="tab-item active">Charts</Tab>
+        <Tab className="tab-item active">News</Tab>
         <Tab className="tab-item active">Trade</Tab>
         <Tab className="tab-item active">Timeline</Tab>
       </TabList>
 
       <TabPanel>
-        <CryptoTimeSeries />
+        <CryptoTimeSeries
+          getDailyOHLCV={getDailyOHLCV}
+          dailyOHLCV={dailyOHLCV}
+          symbol={searchAsset.symbol}
+        />
       </TabPanel>
       <TabPanel>
-        <h2>Analysis</h2>
+        <Analysis tradingSignals={tradingSignals && tradingSignals} />
       </TabPanel>
       <TabPanel>
         <h2>Charts</h2>

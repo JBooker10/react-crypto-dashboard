@@ -22,9 +22,9 @@ export default function Dashboard() {
   } = cryptoCTX;
 
   useEffect(() => {
-    getRealTimePrice(searchAsset.name);
     getAsset(searchAsset.name);
     getStats(searchAsset.symbol);
+    getRealTimePrice(searchAsset.name);
     // eslint-disable-next-line
   }, [loading, searchAsset]);
 

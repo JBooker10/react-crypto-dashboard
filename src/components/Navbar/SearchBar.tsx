@@ -5,7 +5,7 @@ import FilteredSearch from "./FilteredSearch";
 
 export default function SearchBar() {
   const cryptoCTX = useContext(cryptoCurrencyCTX);
-  const { getTopAssets, assets, loading, asset } = cryptoCTX;
+  const { getTopAssets, assets, loading } = cryptoCTX;
   const [find, setFind] = useState([]);
 
   useEffect(() => getTopAssets(), loading);

@@ -7,10 +7,13 @@ import CryptoCurrencyContext from "./cryptoCurrencyContext";
 import {
   GET_DAILY_OHLCV,
   GET_WS_PRICE,
+  CLOSE_WS_PRICE,
   GET_ASSET,
   GET_TOP_ASSETS,
   GET_STATISTICS,
-  SEARCH_ASSET
+  GET_TRADING_SIGNALS,
+  SEARCH_ASSET,
+  STREAM_TICKER
 } from "../types";
 import {
   COIN_CAP_URI,
@@ -26,10 +29,13 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     assets: [],
     stats: {},
     loading: true,
+    quote: {},
+    tradingSignals: {},
     searchAsset: {
-      symbol: "BTC",
-      name: "bitcoin"
-    }
+      symbol: "ETH",
+      name: "ethereum"
+    },
+    priceWs: null
   };
 
   const [state, dispatch] = useReducer(cryptoCurrencyReducer, initialState);
@@ -67,7 +73,6 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     axios
       .get(`${CRYPTO_COMPARE_URI}pricemultifull?fsyms=${symbol}&tsyms=USD`)
       .then(res => {
-        console.log(res);
         dispatch({
           type: GET_STATISTICS,
           payload: res.data.DISPLAY[symbol.toUpperCase()].USD
@@ -77,14 +82,28 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
   };
 
   const getRealTimePrice = (symbol: string): void => {
-    const pricesWs = new WebSocket(`${COIN_CAP_WS_URI}prices?assets=${symbol}`);
-    pricesWs.onmessage = (msg: any) => {
+    state.pricesWs = new WebSocket(`${COIN_CAP_WS_URI}prices?assets=${symbol}`);
+    state.pricesWs.onmessage = (msg: any) => {
       const data = JSON.parse(msg.data);
       dispatch({
         type: GET_WS_PRICE,
         payload: data[symbol]
       });
     };
+    state.pricesWs.onerror = (err: Error) => {
+      console.log(err);
+    };
+  };
+
+  const closeRealTimePrice = () => {
+    if (state.pricesWs) {
+      console.log("work");
+      state.pricesWs.close(1000, "reinitialize with new asset");
+      dispatch({
+        type: CLOSE_WS_PRICE,
+        payload: 0.0
+      });
+    }
   };
 
   const getTopAssets = (): void => {
@@ -96,6 +115,40 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
         });
       })
       .catch(err => console.log(err));
+  };
+
+  const getTradingSignals = (symbol: string) => {
+    axios(
+      `${CRYPTO_COMPARE_URI}tradingsignals/intotheblock/latest?fsym=${symbol}`
+    )
+      .then(res => {
+        dispatch({
+          type: GET_TRADING_SIGNALS,
+          payload: res.data.Data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  const streamQuote = (symbol: string) => {
+    var ccStreamer = new WebSocket("wss://streamer.cryptocompare.com/v2");
+
+    ccStreamer.onopen = function onStreamOpen() {
+      var subRequest = {
+        action: "SubAdd",
+        subs: [`0~Coinbase~${symbol}~USD`]
+      };
+      ccStreamer.send(JSON.stringify(subRequest));
+    };
+
+    ccStreamer.onmessage = function onStreamMessage(message) {
+      const data = JSON.stringify(message.data);
+      dispatch({
+        type: STREAM_TICKER,
+        payload: data
+      });
+      console.log("Received from Cryptocompare: " + data);
+    };
   };
 
   const searchNewAsset = (symbol: string, name: string) => {
@@ -115,7 +168,10 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     dailyOHLCV,
     price,
     loading,
-    stats
+    stats,
+    pricesWs,
+    tradingSignals,
+    quote
   } = state;
 
   return (
@@ -128,13 +184,19 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
         loading,
         stats,
         searchAsset,
+        pricesWs,
+        tradingSignals,
+        quote,
 
         getDailyOHLCV,
         getRealTimePrice,
         getTopAssets,
+        getTradingSignals,
         getAsset,
         getStats,
-        searchNewAsset
+        searchNewAsset,
+        closeRealTimePrice,
+        streamQuote
       }}
     >
       {props.children}

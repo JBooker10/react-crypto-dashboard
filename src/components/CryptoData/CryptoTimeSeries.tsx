@@ -1,11 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useState } from "react";
 
 import { Primary, Lighter, Light, White, Navy } from "./../../styles/colors";
 import { chartWidth, chartToolTipStyle } from "./../../styles";
 import moment from "moment";
 import numeral from "numeral";
 import {
-  Area,
   Line,
   LineChart,
   YAxis,
@@ -17,29 +16,33 @@ import {
 } from "recharts";
 
 import CryptoTimeSeriesActions from "./CryptoTimeSeriesActions";
-import cryptoCurrencyCTX from "./../../context/cryptocurrency/cryptoCurrencyContext";
 
-export default function CryptoTimeSeries() {
-  const cryptoCTX = useContext(cryptoCurrencyCTX);
-  const { getDailyOHLCV, dailyOHLCV, searchAsset, loading } = cryptoCTX;
+export default function CryptoTimeSeries({
+  getDailyOHLCV,
+  dailyOHLCV,
+  symbol
+}: any) {
+  const [hoverData, setHoverData] = useState({} as any);
 
-  // eslint-disable-next-line
-  useEffect(() => getDailyOHLCV("60", searchAsset.symbol), [
-    loading,
-    searchAsset
-  ]);
+  const showTooltipData = (data: any) => {
+    if (data.payload[0]) {
+      setHoverData(data.payload[0].payload);
+    }
+
+    return <div></div>;
+  };
 
   return (
     <>
-      <CryptoTimeSeriesActions
-        getDailyOHLCV={getDailyOHLCV}
-        symbol={searchAsset.symbol}
-      />
+      <CryptoTimeSeriesActions getDailyOHLCV={getDailyOHLCV} symbol={symbol} />
       <div className="line-chart">
-        <h5>
-          CryptoCompare Index:{searchAsset.symbol}{" "}
-          <span className="chart-price">$270.10</span>
-        </h5>
+        <div className="header">
+          <h5>
+            CryptoCompare Index:{symbol}{" "}
+            <span className="chart-price">${hoverData.open}</span>
+          </h5>
+          <h5>{moment.unix(hoverData.time).format("MM/DD/YYYY hh:mm a")}</h5>
+        </div>
         <LineChart
           width={chartWidth}
           height={330}
@@ -51,8 +54,7 @@ export default function CryptoTimeSeries() {
             domain={["auto", "auto"]}
             tick={true}
             tickLine={false}
-            allowDecimals={false}
-            orientation="right"
+            allowDecimals={true}
             dataKey="open"
             axisLine={false}
             tickCount={5}
@@ -70,9 +72,10 @@ export default function CryptoTimeSeries() {
           />
           <Tooltip
             cursor={{
-              stroke: White,
+              stroke: Lighter,
               strokeDasharray: 8
             }}
+            content={showTooltipData}
             labelFormatter={label =>
               moment.unix(label as any).format("MM/DD/YYYY hh:mm a")
             }
@@ -82,15 +85,16 @@ export default function CryptoTimeSeries() {
       </div>
       <div>
         <h5>
-          Volume: {searchAsset.symbol}{" "}
-          <span className="chart-price">$1270.11</span>
+          Volume: {symbol}{" "}
+          <span className="chart-price">
+            {numeral(hoverData.volumeto).format("0.0a")}
+          </span>
         </h5>
         <BarChart width={chartWidth} height={100} data={dailyOHLCV}>
           <YAxis
             tick={true}
-            tickFormatter={tick => numeral(tick).format("0.0a")}
+            tickFormatter={tick => numeral(tick).format("0.00a")}
             tickLine={false}
-            orientation="right"
             axisLine={false}
             tickCount={1}
             stroke={White}

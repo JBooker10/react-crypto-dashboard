@@ -1,7 +1,7 @@
 import React from "react";
-import { Ethereum, Bitcoin } from "../Icons";
+import { Ethereum, Bitcoin, Ripple } from "../Icons";
 
-export default function CryptoAsset({ symbol, asset, name }: any) {
+export default function CryptoAsset({ symbol, name }: any) {
   const getAssetIcon = (symbol: string) => {
     switch (symbol) {
       case "ETC":
@@ -9,6 +9,8 @@ export default function CryptoAsset({ symbol, asset, name }: any) {
         return <Ethereum className="crypto-icon" />;
       case "BTC":
         return <Bitcoin className="bitcoin-icon" />;
+      case "XRP":
+        return <Ripple className="bitcoin-icon" />;
       default:
         return;
     }

@@ -4,10 +4,12 @@ import cryptoCurrencyCTX from "./../../context/cryptocurrency/cryptoCurrencyCont
 
 export default function FilteredSearch({ search, setFind }: any) {
   const cryptoCTX = useContext(cryptoCurrencyCTX);
-  const { searchNewAsset } = cryptoCTX;
+  const { searchNewAsset, closeRealTimePrice } = cryptoCTX;
 
   const handleOnClick = (symbol: string, name: string) => {
+    // pricesWs.close();
     searchNewAsset(symbol, name);
+    closeRealTimePrice();
     setFind([]);
   };
 

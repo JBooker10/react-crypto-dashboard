@@ -1,23 +1,26 @@
 import React from "react";
 
-export default function CryptoTimeSeriesActions({ getDailyOHLCV }: any) {
+export default function CryptoTimeSeriesActions({
+  getDailyOHLCV,
+  symbol
+}: any) {
   return (
     <div className="crypto-actions">
       <div>
-        <button onClick={() => getDailyOHLCV("60", "BTC", "histominute")}>
+        <button onClick={() => getDailyOHLCV("60", symbol, "histominute")}>
           Hour
         </button>
-        <button onClick={() => getDailyOHLCV("24", "BTC", "histohour")}>
+        <button onClick={() => getDailyOHLCV("24", symbol, "histohour")}>
           Day
         </button>
-        <button onClick={() => getDailyOHLCV("168", "BTC", "histohour")}>
+        <button onClick={() => getDailyOHLCV("168", symbol, "histohour")}>
           Week
         </button>
-        <button className="active" onClick={() => getDailyOHLCV("30", "BTC")}>
+        <button className="active" onClick={() => getDailyOHLCV("30", symbol)}>
           Month
         </button>
-        <button onClick={() => getDailyOHLCV("180", "BTC")}>6 Month</button>
-        <button onClick={() => getDailyOHLCV("365", "BTC")}>Year</button>
+        <button onClick={() => getDailyOHLCV("180", symbol)}>6 Month</button>
+        <button onClick={() => getDailyOHLCV("365", symbol)}>Year</button>
       </div>
 
       <div>
