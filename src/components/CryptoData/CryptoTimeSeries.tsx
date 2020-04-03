@@ -7,8 +7,6 @@ import numeral from "numeral";
 import {
   Area,
   AreaChart,
-  Line,
-  LineChart,
   YAxis,
   XAxis,
   CartesianGrid,

@@ -10,6 +10,20 @@
   left: 15vw;
 }
 
+.error-no-data {
+  display: flex;
+  flex-direction: column;
+  .bar-chart {
+    fill: $NavyDark;
+    height: 10vw;
+  }
+
+  h2 {
+    color: $NavyDark;
+    font-weight: 700;
+  }
+}
+
 .percentage {
   color: $Green;
 }

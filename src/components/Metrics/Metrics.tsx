@@ -13,7 +13,7 @@ export default function Metrics({
     <div className="metrics">
       <div className="metric-actions">
         <button className="button btn-primary">open orders</button>
-        <button className="button btn-secondary">add to favorite</button>
+        <button className="button btn-secondary">add to watchList</button>
       </div>
       <Metric name="Change 24h" value={change24} percentage={changePercent} />
       <Metric name="Volume 24" value={volume} />

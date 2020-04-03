@@ -6,6 +6,7 @@
 }
 
 body {
+  overflow: hidden;
   background: $NavyLight;
   font-size: 62.5%;
   font-size: 0.7em;
@@ -18,7 +19,7 @@ body {
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 2em;
   }
 
   body {
@@ -27,16 +28,15 @@ body {
 }
 
 @media only screen and (max-width: 1440px) {
-  // .container {
-  //   width: 100vw;
-  //   margin: 8em 2em 2em 2em;
-  // }
+  .container {
+    margin: 7em 2em 2em 2em;
+  }
 
   h1 {
-    font-size: 28px;
+    font-size: 3em;
   }
 
   body {
-    font-size: 68%;
+    font-size: 60%;
   }
 }

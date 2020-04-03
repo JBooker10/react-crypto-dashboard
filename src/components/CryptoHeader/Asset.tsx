@@ -1,5 +1,14 @@
 import React from "react";
-import { Ethereum, Bitcoin, Ripple } from "../Icons";
+import {
+  Ethereum,
+  Bitcoin,
+  Ripple,
+  Monero,
+  Litecoin,
+  BasicAttentionToken,
+  Nem,
+  Stellar
+} from "../Icons";
 
 export default function CryptoAsset({ symbol, name }: any) {
   const getAssetIcon = (symbol: string) => {
@@ -11,6 +20,16 @@ export default function CryptoAsset({ symbol, name }: any) {
         return <Bitcoin className="bitcoin-icon" />;
       case "XRP":
         return <Ripple className="bitcoin-icon" />;
+      case "XMR":
+        return <Monero className="bitcoin-icon" />;
+      case "LTC":
+        return <Litecoin className="bitcoin-icon" />;
+      case "BAT":
+        return <BasicAttentionToken className="bitcoin-icon" />;
+      case "XEM":
+        return <Nem className="bitcoin-icon" />;
+      case "XLM":
+        return <Stellar className="bitcoin-icon" />;
       default:
         return;
     }
