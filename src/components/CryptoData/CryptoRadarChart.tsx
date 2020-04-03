@@ -6,9 +6,9 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis
 } from "recharts";
-import { Primary, Lighter, Light } from "./../../styles/colors";
+import { Primary, Light } from "./../../styles/colors";
 
-export default function CryptoRadarChart({ tradingSignals }: any) {
+export default function CryptoRadarChart({ tradingSignals, primary }: any) {
   const {
     largetxsVar,
     addressesNetGrowth,
@@ -28,7 +28,7 @@ export default function CryptoRadarChart({ tradingSignals }: any) {
     inOutVar
   ]);
 
-  const size = 1.4;
+  const size = 1.3;
   return (
     <div className="crypto-radar-chart">
       <RadarChart
@@ -41,14 +41,12 @@ export default function CryptoRadarChart({ tradingSignals }: any) {
       >
         <PolarGrid stroke={Light} />
         <PolarAngleAxis dataKey="name" />
-        <PolarRadiusAxis />
+        <PolarRadiusAxis domain={[0, 1]} />
         <Radar
-          name="Mike"
           dataKey="score"
           stroke={Primary}
           fill={Primary}
           fillOpacity={0.6}
-          color={Lighter}
         />
       </RadarChart>
     </div>

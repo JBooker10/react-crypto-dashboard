@@ -66,6 +66,7 @@ export function cryptoCurrencyReducer(state: any, action: any) {
         quote: action.payload,
         loading: false
       };
+
     default:
       throw new Error();
   }

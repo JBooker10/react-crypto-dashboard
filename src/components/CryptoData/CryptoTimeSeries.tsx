@@ -5,6 +5,8 @@ import { chartWidth, chartToolTipStyle } from "./../../styles";
 import moment from "moment";
 import numeral from "numeral";
 import {
+  Area,
+  AreaChart,
   Line,
   LineChart,
   YAxis,
@@ -35,6 +37,7 @@ export default function CryptoTimeSeries({
   return (
     <>
       <CryptoTimeSeriesActions getDailyOHLCV={getDailyOHLCV} symbol={symbol} />
+
       <div className="line-chart">
         <div className="header">
           <h5>
@@ -43,12 +46,24 @@ export default function CryptoTimeSeries({
           </h5>
           <h5>{moment.unix(hoverData.time).format("MM/DD/YYYY hh:mm a")}</h5>
         </div>
-        <LineChart
+        <AreaChart
           width={chartWidth}
           height={330}
           data={dailyOHLCV}
           style={{ zIndex: "1 !important" }}
         >
+          <defs>
+            <linearGradient id="lgrad" x1="50%" y1="95%" x2="50%" y2="5%">
+              <stop
+                offset="0%"
+                style={{ stopColor: Primary, stopOpacity: 0 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: Primary, stopOpacity: 1 }}
+              />
+            </linearGradient>
+          </defs>
           <XAxis dataKey="time" hide={true} />
           <YAxis
             domain={["auto", "auto"]}
@@ -61,13 +76,13 @@ export default function CryptoTimeSeries({
             stroke={White}
           />
           <CartesianGrid vertical={false} stroke={Light} strokeDasharray="8" />
-          <Line
+          <Area
             type="linear"
             dataKey="open"
             dot={false}
             stroke={Primary}
-            fillOpacity={0}
-            fill={Primary}
+            fillOpacity={0.2}
+            fill="url(#lgrad)"
             strokeWidth="2"
           />
           <Tooltip
@@ -81,7 +96,7 @@ export default function CryptoTimeSeries({
             }
             contentStyle={chartToolTipStyle}
           />
-        </LineChart>
+        </AreaChart>
       </div>
       <div>
         <h5>
