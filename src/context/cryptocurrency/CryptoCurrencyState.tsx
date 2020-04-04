@@ -49,7 +49,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
           payload: res.data.Data.Data
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   const getAsset = (symbol: string) => {
@@ -60,7 +60,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
           payload: res.data.data
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   const getStats = (symbol: string) => {
@@ -69,10 +69,10 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
       .then(res => {
         dispatch({
           type: GET_STATISTICS,
-          payload: res.data.DISPLAY[symbol.toUpperCase()].USD
+          payload: res.data.RAW[symbol.toUpperCase()].USD
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   const getTopAssets = (): void => {
@@ -83,7 +83,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
           payload: res.data.data
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   const getTradingSignals = (symbol: string) => {
@@ -96,7 +96,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
           payload: res.data.Data
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   const streamQuote = (symbol: string) => {
@@ -116,7 +116,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
         type: STREAM_TICKER,
         payload: data
       });
-      console.log("Received from Cryptocompare: " + data);
+      console.error("Received from Cryptocompare: " + data);
     };
   };
 

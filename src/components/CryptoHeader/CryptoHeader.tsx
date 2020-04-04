@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Asset from "./Asset";
+import CryptoPrice from "./CryptoPrice";
 import "./CryptoHeader.scss";
 
 export default function CryptoHeader({
@@ -9,33 +10,16 @@ export default function CryptoHeader({
   changePercent,
   priceUsd
 }: any) {
-  const [isRealTime, setRealTime] = useState(true);
-  const isPositive = Math.sign(changePercent);
   return (
     <div className="crypto-header">
       <div className="crypto-head">
         <Asset symbol={symbol} name={name} />
       </div>
-      <div
-        className="crypto-price"
-        onClick={() => {
-          setRealTime(!isRealTime);
-        }}
-      >
-        <h1>
-          $
-          {price
-            ? parseFloat(price).toFixed(3)
-            : parseFloat(priceUsd).toFixed(2)}
-        </h1>
-
-        <strong className={isPositive === 1 ? "up" : "down"}>
-          {isPositive === 1 ? "+" : ""}
-          {changePercent && changePercent.substring(0, 5) + "%"}
-        </strong>
-
-        <div></div>
-      </div>
+      <CryptoPrice
+        changePercent={changePercent.toFixed(3)}
+        price={price}
+        priceUsd={priceUsd}
+      />
     </div>
   );
 }

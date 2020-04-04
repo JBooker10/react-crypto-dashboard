@@ -37,7 +37,6 @@ export default function PriceStreamingState(props: any) {
     );
     state.pricesWebSocket.onmessage = (msg: any) => {
       const data = JSON.parse(msg.data);
-      console.log(data);
       dispatch({
         type: STREAM_PRICES,
         payload: data
@@ -52,7 +51,6 @@ export default function PriceStreamingState(props: any) {
     );
     state.topPriceWebSocket.onmessage = (msg: any) => {
       const data = JSON.parse(msg.data);
-      console.log(data);
       dispatch({
         type: STREAM_TOP_PRICES,
         payload: data

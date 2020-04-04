@@ -1,5 +1,6 @@
 import React from "react";
 import Metric from "./Metric";
+import Numeral from "numeral";
 import "./Metrics.scss";
 
 export default function Metrics({
@@ -15,8 +16,17 @@ export default function Metrics({
         <button className="button btn-primary">open orders</button>
         <button className="button btn-secondary">add to watchList</button>
       </div>
-      <Metric name="Change 24h" value={change24} percentage={changePercent} />
-      <Metric name="Volume 24" value={volume} />
+      <Metric
+        name="Change 24h"
+        value={Numeral(change24).format("$0.00")}
+        percentage={changePercent.toFixed(3) + "%"}
+      />
+      <Metric
+        name="Volume 24"
+        value={Numeral(volume)
+          .format("($ 0.000 a)")
+          .toUpperCase()}
+      />
       <Metric name="High 24" value={high24} />
       <Metric name="Open 24" value={open24} />
     </div>

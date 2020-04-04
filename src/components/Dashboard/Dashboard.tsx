@@ -30,6 +30,10 @@ export default function Dashboard() {
     // eslint-disable-next-line
   }, [loading, searchAsset]);
 
+  const getChangePercentage = (): number => {
+    return stats.OPENDAY / parseFloat(topPrices[searchAsset.name]);
+  };
+
   return (
     <div className="main">
       <Navbar />
@@ -41,15 +45,15 @@ export default function Dashboard() {
               price={topPrices[searchAsset.name] && topPrices[searchAsset.name]}
               name={asset.name}
               symbol={asset.symbol}
-              changePercent={asset.changePercent24Hr}
+              changePercent={parseFloat(asset.changePercent24Hr)}
             />
             <div className="columns">
               <CryptoData />
             </div>
           </div>
           <Metrics
-            high24={stats.HIGHDAY}
-            open24={stats.OPENDAY}
+            high24={stats.HIGH24HOUR}
+            open24={stats.OPEN24HOUR}
             change24={stats.CHANGE24HOUR}
             changePercent={stats.CHANGEPCT24HOUR}
             volume={stats.VOLUME24HOURTO}
