@@ -2,6 +2,8 @@ import React from "react";
 import SideNavbar from "./components/Navbar/SideNavbar";
 import Dashboard from "./components/Dashboard/Dashboard";
 import CryptoCurrencyState from "./context/cryptocurrency/CryptoCurrencyState";
+import PriceStreamingState from "./context/pricing/pricingState";
+
 import "./App.scss";
 
 function App() {
@@ -9,7 +11,9 @@ function App() {
     <div className="App">
       <CryptoCurrencyState>
         <SideNavbar />
-        <Dashboard />
+        <PriceStreamingState>
+          <Dashboard />
+        </PriceStreamingState>
       </CryptoCurrencyState>
     </div>
   );

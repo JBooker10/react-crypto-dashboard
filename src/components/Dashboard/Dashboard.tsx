@@ -4,27 +4,29 @@ import Navbar from "./../Navbar/Navbar";
 import Metrics from "./../Metrics/Metrics";
 import CryptoHeader from "./../CryptoHeader/CryptoHeader";
 import CryptoData from "./../CryptoData/CryptoData";
-
 import cryptoCurrencyCTX from "./../../context/cryptocurrency/cryptoCurrencyContext";
+import pricingContext from "./../../context/pricing/pricingContext";
 import "./Dashboard.scss";
 
 export default function Dashboard() {
   const cryptoCTX = useContext(cryptoCurrencyCTX);
-  const {
-    getAsset,
-    getStats,
-    searchAsset,
-    asset,
-    // getRealTimePrice,
-    // price,
-    loading,
-    stats
-  } = cryptoCTX;
+  const pricingCTX = useContext(pricingContext);
+  const { streamTopPrices, topPrices } = pricingCTX;
+  const { getAsset, getStats, searchAsset, asset, loading, stats } = cryptoCTX;
 
   useEffect(() => {
     getAsset(searchAsset.name);
     getStats(searchAsset.symbol);
-    // getRealTimePrice(searchAsset.name);
+    streamTopPrices(
+      "ethereum",
+      "bitcoin",
+      "monero",
+      "litecoin",
+      "dash",
+      "basic-attention-token",
+      "ripple",
+      "stellar"
+    );
     // eslint-disable-next-line
   }, [loading, searchAsset]);
 
@@ -36,8 +38,7 @@ export default function Dashboard() {
           <div className="column col-9 col-sm-auto col-mx-auto">
             <CryptoHeader
               priceUsd={asset.priceUsd}
-              price={parseFloat(asset.priceUsd).toFixed(2)}
-              // price={parseFloat(price).toFixed(2)}
+              price={topPrices[searchAsset.name] && topPrices[searchAsset.name]}
               name={asset.name}
               symbol={asset.symbol}
               changePercent={asset.changePercent24Hr}

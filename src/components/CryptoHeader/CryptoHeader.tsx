@@ -22,7 +22,12 @@ export default function CryptoHeader({
           setRealTime(!isRealTime);
         }}
       >
-        <h1>${isRealTime ? price : parseFloat(priceUsd).toFixed(2)}</h1>
+        <h1>
+          $
+          {price
+            ? parseFloat(price).toFixed(3)
+            : parseFloat(priceUsd).toFixed(2)}
+        </h1>
 
         <strong className={isPositive === 1 ? "up" : "down"}>
           {isPositive === 1 ? "+" : ""}

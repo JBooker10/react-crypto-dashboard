@@ -6,8 +6,6 @@ import CryptoCurrencyContext from "./cryptoCurrencyContext";
 
 import {
   GET_DAILY_OHLCV,
-  GET_WS_PRICE,
-  CLOSE_WS_PRICE,
   GET_ASSET,
   GET_TOP_ASSETS,
   GET_STATISTICS,
@@ -16,15 +14,10 @@ import {
   SEARCH_ASSET,
   STREAM_TICKER
 } from "../types";
-import {
-  COIN_CAP_URI,
-  CRYPTO_COMPARE_URI,
-  COIN_CAP_WS_URI
-} from "./../../config";
+import { COIN_CAP_URI, CRYPTO_COMPARE_URI } from "./../../config";
 
 export default function CryptoCurrencyState(props: any): JSX.Element {
   const initialState: any = {
-    price: null,
     dailyOHLCV: [],
     asset: {},
     assets: [],
@@ -36,8 +29,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     searchAsset: {
       symbol: "BTC",
       name: "bitcoin"
-    },
-    priceWs: null
+    }
   };
 
   const [state, dispatch] = useReducer(cryptoCurrencyReducer, initialState);
@@ -81,31 +73,6 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
         });
       })
       .catch(err => console.log(err));
-  };
-
-  const getRealTimePrice = (symbol: string): void => {
-    state.pricesWs = new WebSocket(`${COIN_CAP_WS_URI}prices?assets=${symbol}`);
-    state.pricesWs.onmessage = (msg: any) => {
-      const data = JSON.parse(msg.data);
-      dispatch({
-        type: GET_WS_PRICE,
-        payload: data[symbol]
-      });
-    };
-    state.pricesWs.onerror = (err: Error) => {
-      console.log(err);
-    };
-  };
-
-  const closeRealTimePrice = () => {
-    if (state.pricesWs) {
-      console.log("work");
-      state.pricesWs.close(1000, "reinitialize with new asset");
-      dispatch({
-        type: CLOSE_WS_PRICE,
-        payload: 0.0
-      });
-    }
   };
 
   const getTopAssets = (): void => {
@@ -180,7 +147,6 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     assets,
     dailyOHLCV,
     news,
-    price,
     loading,
     stats,
     pricesWs,
@@ -195,7 +161,6 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
         assets,
         dailyOHLCV,
         news,
-        price,
         loading,
         stats,
         searchAsset,
@@ -205,13 +170,11 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
 
         getDailyOHLCV,
         getNews,
-        getRealTimePrice,
         getTopAssets,
         getTradingSignals,
         getAsset,
         getStats,
         searchNewAsset,
-        closeRealTimePrice,
         streamQuote
       }}
     >

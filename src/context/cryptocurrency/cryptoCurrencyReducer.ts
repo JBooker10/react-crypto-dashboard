@@ -1,6 +1,4 @@
 import {
-  GET_WS_PRICE,
-  CLOSE_WS_PRICE,
   GET_DAILY_OHLCV,
   GET_ASSET,
   GET_STATISTICS,
@@ -13,18 +11,6 @@ import {
 
 export function cryptoCurrencyReducer(state: any, action: any) {
   switch (action.type) {
-    case GET_WS_PRICE:
-      return {
-        ...state,
-        price: action.payload,
-        loading: false
-      };
-    case CLOSE_WS_PRICE:
-      return {
-        ...state,
-        price: action.payload,
-        loading: false
-      };
     case GET_DAILY_OHLCV:
       return {
         ...state,
@@ -73,7 +59,6 @@ export function cryptoCurrencyReducer(state: any, action: any) {
         quote: action.payload,
         loading: false
       };
-
     default:
       throw new Error();
   }
