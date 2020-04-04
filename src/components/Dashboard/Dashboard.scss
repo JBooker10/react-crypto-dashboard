@@ -10,6 +10,14 @@
   left: 15vw;
 }
 
+.up {
+  color: $Green;
+}
+
+.down {
+  color: $Red;
+}
+
 .error-no-data {
   display: flex;
   flex-direction: column;

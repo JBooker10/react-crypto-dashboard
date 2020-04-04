@@ -5,6 +5,7 @@ import {
   GET_ASSET,
   GET_STATISTICS,
   GET_TOP_ASSETS,
+  GET_NEWS,
   SEARCH_ASSET,
   GET_TRADING_SIGNALS,
   STREAM_TICKER
@@ -52,6 +53,12 @@ export function cryptoCurrencyReducer(state: any, action: any) {
       return {
         ...state,
         tradingSignals: action.payload,
+        loading: false
+      };
+    case GET_NEWS:
+      return {
+        ...state,
+        news: action.payload,
         loading: false
       };
     case SEARCH_ASSET:

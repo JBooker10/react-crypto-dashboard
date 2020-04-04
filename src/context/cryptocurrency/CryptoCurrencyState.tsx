@@ -12,6 +12,7 @@ import {
   GET_TOP_ASSETS,
   GET_STATISTICS,
   GET_TRADING_SIGNALS,
+  GET_NEWS,
   SEARCH_ASSET,
   STREAM_TICKER
 } from "../types";
@@ -23,13 +24,14 @@ import {
 
 export default function CryptoCurrencyState(props: any): JSX.Element {
   const initialState: any = {
-    price: 0.0,
+    price: null,
     dailyOHLCV: [],
     asset: {},
     assets: [],
     stats: {},
     loading: true,
     quote: {},
+    news: [],
     tradingSignals: {},
     searchAsset: {
       symbol: "BTC",
@@ -161,11 +163,23 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     });
   };
 
+  const getNews = () => {
+    axios(`${CRYPTO_COMPARE_URI}v2/news/?lang=EN`)
+      .then(res => {
+        dispatch({
+          type: GET_NEWS,
+          payload: res.data.Data
+        });
+      })
+      .catch(err => console.error(err));
+  };
+
   const {
     searchAsset,
     asset,
     assets,
     dailyOHLCV,
+    news,
     price,
     loading,
     stats,
@@ -180,6 +194,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
         asset,
         assets,
         dailyOHLCV,
+        news,
         price,
         loading,
         stats,
@@ -189,6 +204,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
         quote,
 
         getDailyOHLCV,
+        getNews,
         getRealTimePrice,
         getTopAssets,
         getTradingSignals,

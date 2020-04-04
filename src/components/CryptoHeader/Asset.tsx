@@ -7,7 +7,8 @@ import {
   Litecoin,
   BasicAttentionToken,
   Nem,
-  Stellar
+  Stellar,
+  Dash
 } from "../Icons";
 
 export default function CryptoAsset({ symbol, name }: any) {
@@ -30,6 +31,8 @@ export default function CryptoAsset({ symbol, name }: any) {
         return <Nem className="bitcoin-icon" />;
       case "XLM":
         return <Stellar className="bitcoin-icon" />;
+      case "DASH":
+        return <Dash className="bitcoin-icon" />;
       default:
         return;
     }

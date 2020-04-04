@@ -17,9 +17,14 @@
     display: flex;
     align-items: center;
 
-    p {
-      color: $Green;
+    strong {
       margin-left: 0.5em;
+      width: 100%;
+      margin-bottom: 3em;
+    }
+
+    h1 {
+      padding: 0;
     }
   }
 
@@ -52,5 +57,38 @@
 
     fill: transparent;
     // background: red;
+  }
+}
+
+-webkit-keyframes neon3 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff,
+      0 0 70px #fff, 0 0 120px #fff, 0 0 140px #fff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff,
+      0 0 35px #fff, 0 0 70px #fff, 0 0;
+  }
+}
+
+@-moz-keyframes neon3 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff,
+      0 0 70px #fff, 0 0 140px #fff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff,
+      0 0 35px #fff, 0 0;
+  }
+}
+
+@keyframes neon3 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff,
+      0 0 70px #fff, 0 0 140px #fff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff,
+      0 0 35px #fff, 0 0;
   }
 }

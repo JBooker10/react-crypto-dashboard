@@ -15,8 +15,8 @@ export default function Dashboard() {
     getStats,
     searchAsset,
     asset,
-    getRealTimePrice,
-    price,
+    // getRealTimePrice,
+    // price,
     loading,
     stats
   } = cryptoCTX;
@@ -24,7 +24,7 @@ export default function Dashboard() {
   useEffect(() => {
     getAsset(searchAsset.name);
     getStats(searchAsset.symbol);
-    getRealTimePrice(searchAsset.name);
+    // getRealTimePrice(searchAsset.name);
     // eslint-disable-next-line
   }, [loading, searchAsset]);
 
@@ -35,7 +35,9 @@ export default function Dashboard() {
         <div className="columns">
           <div className="column col-9 col-sm-auto col-mx-auto">
             <CryptoHeader
-              price={parseFloat(price).toFixed(2)}
+              priceUsd={asset.priceUsd}
+              price={parseFloat(asset.priceUsd).toFixed(2)}
+              // price={parseFloat(price).toFixed(2)}
               name={asset.name}
               symbol={asset.symbol}
               changePercent={asset.changePercent24Hr}
