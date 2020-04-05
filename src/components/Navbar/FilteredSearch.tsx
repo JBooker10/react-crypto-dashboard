@@ -19,13 +19,8 @@ export default function FilteredSearch({ search, setFind }: any) {
           onClick={() => handleOnClick(c.symbol, c.id)}
           className="search-item"
         >
-          <h1>
-            {c.name} <span className="secondary">{c.symbol}</span>
-          </h1>
-          <p>
-            ${parseFloat(c.priceUsd).toFixed(2)}{" "}
-            <span>{parseFloat(c.changePercent24Hr).toFixed(2)}%</span>
-          </p>
+          <h1>{c.name}</h1>
+          <h1 className="secondary">{c.symbol}</h1>
         </div>
       ))}
     </div>
