@@ -1,2 +1,29 @@
 @import "./../node_modules/spectre.css/dist/spectre.css";
 @import "./../node_modules/spectre.css/dist/spectre-icons.css";
+
+@font-face {
+  font-family: "FontAwesome";
+  src: url("./assets/fonts/fontawesome-webfont.eot") format("embedded-opentype"),
+    url("./assets/fonts/fontawesome-webfont.woff2") format("woff2"),
+    url("./assets/fonts/fontawesome-webfont.woff") format("woff"),
+    url("./assets/fonts/fontawesome-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-github:before {
+  content: "\f09b";
+}
+
+.fa-github-square:before {
+  content: "\f113";
+}

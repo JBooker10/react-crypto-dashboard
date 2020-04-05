@@ -38,26 +38,32 @@ export default function Dashboard() {
     <div className="main">
       <Navbar />
       <div className="container">
-        <div className="columns">
+        <div className="columns col-gapless">
           <div className="column col-9 col-sm-auto col-mx-auto">
-            <CryptoHeader
-              priceUsd={asset.priceUsd}
-              price={topPrices[searchAsset.name] && topPrices[searchAsset.name]}
-              name={asset.name}
-              symbol={asset.symbol}
-              changePercent={parseFloat(asset.changePercent24Hr)}
-            />
-            <div className="columns">
-              <CryptoData />
+            <div style={{ marginLeft: "3vw" }}>
+              <CryptoHeader
+                priceUsd={asset.priceUsd}
+                price={
+                  topPrices[searchAsset.name] && topPrices[searchAsset.name]
+                }
+                name={asset.name}
+                symbol={asset.symbol}
+                changePercent={parseFloat(asset.changePercent24Hr)}
+              />
+              <div className="columns">
+                <CryptoData />
+              </div>
             </div>
           </div>
-          <Metrics
-            high24={stats.HIGH24HOUR}
-            open24={stats.OPEN24HOUR}
-            change24={stats.CHANGE24HOUR}
-            changePercent={stats.CHANGEPCT24HOUR}
-            volume={stats.VOLUME24HOURTO}
-          />
+          <div className="column col-3">
+            <Metrics
+              high24={stats.HIGH24HOUR}
+              open24={stats.OPEN24HOUR}
+              change24={stats.CHANGE24HOUR}
+              changePercent={stats.CHANGEPCT24HOUR}
+              volume={stats.VOLUME24HOURTO}
+            />
+          </div>
         </div>
       </div>
     </div>
