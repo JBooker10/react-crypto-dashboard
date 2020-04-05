@@ -3,43 +3,7 @@ export interface SVGIconProps {
   style?: React.CSSProperties;
 }
 
-export type SymbolType =
-  | "BTC"
-  | "ETH"
-  | "XRP"
-  | "USDT"
-  | "BCH"
-  | "BSV"
-  | "LTC"
-  | "EOS"
-  | "BNB"
-  | "XTZ"
-  | "LEO"
-  | "XMR"
-  | "XLM"
-  | "ADA"
-  | "LINK"
-  | "TRX"
-  | "HT"
-  | "CRO"
-  | "USDC"
-  | "DASH"
-  | "ETC"
-  | "HEDG"
-  | "NEO"
-  | "MIOTA"
-  | "ATOM"
-  | "XEM"
-  | "ZEC"
-  | "MKR"
-  | "OKB"
-  | "ONT"
-  | "PAX"
-  | "FTT"
-  | "DOGE"
-  | "BAT"
-  | "BUSD"
-  | "VET"
-  | "TUSD"
-  | "ICX"
-  | string;
+export interface Asset {
+  symbol: string;
+  name: string;
+}

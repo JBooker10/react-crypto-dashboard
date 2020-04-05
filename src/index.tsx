@@ -4,6 +4,9 @@ import "./index.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import ReactGA from "react-ga";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 ReactGA.initialize("UA-162672611-1");
 

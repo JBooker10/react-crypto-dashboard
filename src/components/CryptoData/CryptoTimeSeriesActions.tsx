@@ -1,9 +1,14 @@
 import React from "react";
 
+interface CryptoTimeSeriesActionProps {
+  getDailyOHLCV: Function;
+  symbol: string;
+}
+
 export default function CryptoTimeSeriesActions({
   getDailyOHLCV,
   symbol
-}: any) {
+}: CryptoTimeSeriesActionProps) {
   return (
     <div className="crypto-actions">
       <div>

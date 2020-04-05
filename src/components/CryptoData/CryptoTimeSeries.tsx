@@ -17,11 +17,17 @@ import {
 
 import CryptoTimeSeriesActions from "./CryptoTimeSeriesActions";
 
+interface CryptoTimeSeries {
+  getDailyOHLCV: Function;
+  dailyOHLCV: [];
+  symbol: string;
+}
+
 export default function CryptoTimeSeries({
   getDailyOHLCV,
   dailyOHLCV,
   symbol
-}: any) {
+}: CryptoTimeSeries) {
   const [hoverData, setHoverData] = useState({} as any);
 
   const showTooltipData = (data: any) => {

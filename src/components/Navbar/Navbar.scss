@@ -2,6 +2,35 @@
 @import "./../../../node_modules/spectre.css/src/variables";
 @import "./../../../node_modules/spectre.css/src/navbar";
 
+// .ReactModalPortal {
+//   background: rgba(0, 0, 0, 0.5) !important;
+// }
+
+.ReactModal__Overlay {
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: 5px !important;
+  backdrop-filter: blur(5px);
+  -moz-backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.ReactModal__Content {
+  width: 25vw;
+  height: 60vh;
+  background: $NavyLight !important;
+  box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.5);
+  border: none !important;
+  border-radius: 0.5em !important;
+  padding: 2.5em !important;
+
+  h2 {
+    text-align: center;
+    color: $White;
+    font-weight: 100;
+  }
+}
+
 .side-navbar {
   display: flex;
   flex-direction: column;
@@ -42,7 +71,6 @@
 
   .active {
     color: $Primary;
-    border-left: 1px solid $Primary;
 
     .nav-icon {
       fill: $Primary;
@@ -56,7 +84,7 @@
   background: $Navy;
   width: 85vw;
   position: fixed;
-  z-index: 100;
+  z-index: 2;
   left: 15vw;
   .icon-search {
     transform: scale(0.75);
@@ -90,9 +118,9 @@
     display: block;
     padding: 2em 0;
     background: $NavyLight;
-    width: 275px;
+    width: 250px;
     font-size: 1em;
-    border-radius: 4px;
+    border-radius: 0.5em;
     color: white;
     box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
     position: absolute;
@@ -137,10 +165,10 @@
   flex-direction: column;
   color: rgb(218, 218, 218);
   padding: 1.5em 4em;
-  backdrop-filter: blur(7px) grayscale(30%);
+  backdrop-filter: blur(5px);
   filter: blur(120%);
-  -moz-backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
+  -moz-backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   position: fixed;
   z-index: 1000 !important;
   left: 0;

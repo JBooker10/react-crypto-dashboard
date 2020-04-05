@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import CryptoTimeSeries from "./CryptoTimeSeries";
-import News from "./News";
-import cryptoCurrencyCTX from "./../../context/cryptocurrency/cryptoCurrencyContext";
+import cryptoCurrencyCTX from "../../context/cryptocurrency/cryptoCurrencyContext";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Analysis from "./Analysis";
 import ErrorNoData from "./ErrorNoData";

@@ -1,11 +1,11 @@
 import React, { useEffect, useContext } from "react";
 
-import Navbar from "./../Navbar/Navbar";
-import Metrics from "./../Metrics/Metrics";
-import CryptoHeader from "./../CryptoHeader/CryptoHeader";
-import CryptoData from "./../CryptoData/CryptoData";
-import cryptoCurrencyCTX from "./../../context/cryptocurrency/cryptoCurrencyContext";
-import pricingContext from "./../../context/pricing/pricingContext";
+import Navbar from "../Navbar/Navbar";
+import Metrics from "../Metrics/Metrics";
+import CryptoHeader from "../CryptoHeader/CryptoHeader";
+import CryptoData from "../CryptoData";
+import cryptoCurrencyCTX from "../../context/cryptocurrency/cryptoCurrencyContext";
+import pricingContext from "../../context/pricing/pricingContext";
 import "./Dashboard.scss";
 
 export default function Dashboard() {
@@ -29,10 +29,6 @@ export default function Dashboard() {
     );
     // eslint-disable-next-line
   }, [loading, searchAsset]);
-
-  const getChangePercentage = (): number => {
-    return stats.OPENDAY / parseFloat(topPrices[searchAsset.name]);
-  };
 
   return (
     <div className="main">

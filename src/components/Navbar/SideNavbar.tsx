@@ -13,7 +13,7 @@ export default function SideNavbar() {
         <br />
         <div className="navbar-item active">
           <PieChartIcon className="nav-icon" />
-          <span>Dashboard</span>
+          <strong style={{ letterSpacing: "1px" }}>Dashboard</strong>
         </div>
       </div>
     </div>

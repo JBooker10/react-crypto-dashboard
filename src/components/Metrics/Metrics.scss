@@ -10,43 +10,6 @@
   .metric-actions {
     display: flex;
     flex-direction: column;
-
-    .button {
-      border: none;
-      margin: 0.5em 0;
-      width: 100%;
-      font-weight: 600;
-      border-radius: 4px;
-      min-width: 200px;
-      max-width: 315px;
-      height: 45px;
-      font-size: 14px !important;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    .btn-primary:hover {
-      background: $PrimaryGradient;
-    }
-
-    .btn-primary:active {
-      background: $PrimaryGradient;
-      transform: scale(1.01);
-    }
-
-    .btn-secondary:active {
-      transform: scale(1.01);
-    }
-
-    .btn-primary {
-      background: $Primary;
-      color: $NavyDark;
-    }
-
-    .btn-secondary {
-      background: $Secondary;
-      color: $White;
-    }
   }
 
   .metrics-card {

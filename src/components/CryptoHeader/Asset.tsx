@@ -1,4 +1,5 @@
 import React from "react";
+import { Asset } from "./../type";
 import {
   Ethereum,
   Bitcoin,
@@ -11,7 +12,7 @@ import {
   Dash
 } from "../Icons";
 
-export default function CryptoAsset({ symbol, name }: any) {
+export default function CryptoAsset({ symbol, name }: Asset) {
   const getAssetIcon = (symbol: string) => {
     switch (symbol) {
       case "ETC":

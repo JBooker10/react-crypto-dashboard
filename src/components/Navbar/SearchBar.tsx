@@ -8,8 +8,9 @@ export default function SearchBar() {
   const { getTopAssets, assets, loading } = cryptoCTX;
   const [find, setFind] = useState([]);
 
+  // eslint-disable-next-line
   useEffect(() => getTopAssets(), loading);
-
+  // eslint-disable-next-line
   useEffect(() => {}, [find.length <= 0]);
 
   const handleOnChange = (e: any) => {
@@ -39,8 +40,7 @@ export default function SearchBar() {
           name="search"
           className=""
           type="text"
-          placeholder="Search Crypto Currency..."
-          autoFocus
+          placeholder="search crypto currency..."
         />
       </div>
       {find.length > 0 && <FilteredSearch search={find} setFind={setFind} />}

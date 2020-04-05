@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import SignupModal from "./../Dashboard/SignupModal";
 import Metric from "./Metric";
 import Numeral from "numeral";
 import "./Metrics.scss";
+
+interface MetricProps {
+  volume: number;
+  high24: number;
+  open24: number;
+  change24: number;
+  changePercent?: number;
+}
 
 export default function Metrics({
   volume,
@@ -9,17 +18,31 @@ export default function Metrics({
   open24,
   change24,
   changePercent
-}: any) {
+}: MetricProps) {
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <div className="metrics">
       <div className="metric-actions">
-        <button className="button btn-primary">open orders</button>
-        <button className="button btn-secondary">add to watchList</button>
+        <button className="button btn-primary" onClick={openModal}>
+          open orders
+        </button>
+        <button className="button btn-secondary" onClick={openModal}>
+          add to watchList
+        </button>
       </div>
+      <SignupModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
       <Metric
         name="Change 24h"
         value={Numeral(change24).format("$0.00")}
-        percentage={changePercent.toFixed(3) + "%"}
+        percentage={changePercent && changePercent.toFixed(3) + "%"}
       />
       <Metric
         name="Volume 24"
@@ -32,11 +55,3 @@ export default function Metrics({
     </div>
   );
 }
-
-Metrics.defaultProps = {
-  volume: 8067826541,
-  change24: 15.11,
-  high24: 271.63,
-  open24: 249.26,
-  changePercent: 9.6
-};

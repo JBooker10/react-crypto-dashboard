@@ -35,7 +35,7 @@ export default function CryptoRadarChart({ tradingSignals, primary }: any) {
         cx={300 * size}
         cy={225 * size}
         outerRadius={150 * size}
-        width={500 * size}
+        width={575 * size}
         height={400 * size}
         data={chartData}
       >
