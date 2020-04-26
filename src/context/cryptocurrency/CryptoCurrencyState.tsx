@@ -12,7 +12,7 @@ import {
   GET_TRADING_SIGNALS,
   GET_NEWS,
   SEARCH_ASSET,
-  STREAM_TICKER
+  STREAM_TICKER,
 } from "../types";
 import { COIN_CAP_URI, CRYPTO_COMPARE_URI } from "./../../config";
 
@@ -28,8 +28,8 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     tradingSignals: {},
     searchAsset: {
       symbol: "BTC",
-      name: "bitcoin"
-    }
+      name: "bitcoin",
+    },
   };
 
   const [state, dispatch] = useReducer(cryptoCurrencyReducer, initialState);
@@ -43,60 +43,60 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
       .get(
         `${CRYPTO_COMPARE_URI}v2/${history}?fsym=${symbol}&tsym=USD&limit=${period}`
       )
-      .then(res => {
+      .then((res) => {
         dispatch({
           type: GET_DAILY_OHLCV,
-          payload: res.data.Data.Data
+          payload: res.data.Data.Data,
         });
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   const getAsset = (symbol: string) => {
     axios(`${COIN_CAP_URI}assets/${symbol}`)
-      .then(res => {
+      .then((res) => {
         dispatch({
           type: GET_ASSET,
-          payload: res.data.data
+          payload: res.data.data,
         });
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   const getStats = (symbol: string) => {
     axios
       .get(`${CRYPTO_COMPARE_URI}pricemultifull?fsyms=${symbol}&tsyms=USD`)
-      .then(res => {
+      .then((res) => {
         dispatch({
           type: GET_STATISTICS,
-          payload: res.data.RAW[symbol.toUpperCase()].USD
+          payload: res.data.RAW[symbol.toUpperCase()].USD,
         });
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   const getTopAssets = (): void => {
     axios(`${COIN_CAP_URI}assets`)
-      .then(res => {
+      .then((res) => {
         dispatch({
           type: GET_TOP_ASSETS,
-          payload: res.data.data
+          payload: res.data.data,
         });
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   const getTradingSignals = (symbol: string) => {
     axios(
       `${CRYPTO_COMPARE_URI}tradingsignals/intotheblock/latest?fsym=${symbol}`
     )
-      .then(res => {
+      .then((res) => {
         dispatch({
           type: GET_TRADING_SIGNALS,
-          payload: res.data.Data
+          payload: res.data.Data,
         });
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   const streamQuote = (symbol: string) => {
@@ -105,7 +105,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     ccStreamer.onopen = function onStreamOpen() {
       var subRequest = {
         action: "SubAdd",
-        subs: [`0~Coinbase~${symbol}~USD`]
+        subs: [`0~Coinbase~${symbol}~USD`],
       };
       ccStreamer.send(JSON.stringify(subRequest));
     };
@@ -114,7 +114,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
       const data = JSON.stringify(message.data);
       dispatch({
         type: STREAM_TICKER,
-        payload: data
+        payload: data,
       });
       console.error("Received from Cryptocompare: " + data);
     };
@@ -125,20 +125,20 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
       type: SEARCH_ASSET,
       payload: {
         symbol,
-        name
-      }
+        name,
+      },
     });
   };
 
   const getNews = () => {
     axios(`${CRYPTO_COMPARE_URI}v2/news/?lang=EN`)
-      .then(res => {
+      .then((res) => {
         dispatch({
           type: GET_NEWS,
-          payload: res.data.Data
+          payload: res.data.Data,
         });
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   const {
@@ -151,7 +151,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
     stats,
     pricesWs,
     tradingSignals,
-    quote
+    quote,
   } = state;
 
   return (
@@ -175,7 +175,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
         getAsset,
         getStats,
         searchNewAsset,
-        streamQuote
+        streamQuote,
       }}
     >
       {props.children}

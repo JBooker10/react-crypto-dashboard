@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import CryptoTimeSeries from "./CryptoTimeSeries";
 import cryptoCurrencyCTX from "../../context/cryptocurrency/cryptoCurrencyContext";
+import News from "./News";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Analysis from "./Analysis";
 import ErrorNoData from "./ErrorNoData";
@@ -13,15 +14,18 @@ export default function CryptoData() {
     loading,
     searchAsset,
     getDailyOHLCV,
-    dailyOHLCV
+    dailyOHLCV,
+    news,
+    getNews,
   } = cryptoCTX;
 
   useEffect(() => {
     getTradingSignals(searchAsset.symbol);
     getDailyOHLCV("180", searchAsset.symbol);
+    getNews();
 
     // eslint-disable-next-line
-  }, [searchAsset, loading]);
+  }, [searchAsset, loading, news.length !== 0]);
 
   return (
     <Tabs className="column crypto-data">
@@ -47,7 +51,9 @@ export default function CryptoData() {
           <ErrorNoData />
         )}
       </TabPanel>
-      <TabPanel></TabPanel>
+      <TabPanel>
+        <News news={news} />
+      </TabPanel>
       <TabPanel>
         <h2>Trade</h2>
       </TabPanel>

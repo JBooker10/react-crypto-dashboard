@@ -2,8 +2,11 @@
 
 .metrics {
   display: block;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 8em;
   margin: 2.5em auto;
-  width: 15vw;
+  width: 17vw;
   max-width: 320px;
   min-width: 220px;
 

@@ -34,9 +34,9 @@ export default function Dashboard() {
     <div className="main">
       <Navbar />
       <div className="container">
-        <div className="columns col-gapless">
-          <div className="column col-9 col-sm-auto col-mx-auto">
-            <div style={{ marginLeft: "3vw" }}>
+        <div className="columns">
+          <div className="column col-9 col-sm-auto col-mx-auto main__container">
+            <div style={{}}>
               <CryptoHeader
                 priceUsd={asset.priceUsd}
                 price={
@@ -51,7 +51,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="column col-3">
+          <div className="column col-3 main_container">
             <Metrics
               high24={stats.HIGH24HOUR}
               open24={stats.OPEN24HOUR}

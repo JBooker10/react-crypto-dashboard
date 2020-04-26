@@ -84,16 +84,86 @@
   height: auto;
   position: absolute;
   left: 0;
-  width: 85vw;
+  width: 82vw;
   margin-top: 6em;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 2em;
+  margin-right: 2em;
   margin-bottom: 0;
+
+  .main__container {
+    // padding: 0 3em !important;
+  }
 }
 
 .crypto-data {
   .tab-block {
     border: none;
+  }
+
+  .news {
+    margin: 1em;
+    flex: 43%;
+
+    min-height: 270px;
+    // border: 1px solid $Light;
+    padding: 1.5em;
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+
+    h5:hover {
+      background: $PrimaryGradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+
+    .time-news {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      i {
+        margin-right: 0.5em;
+        margin-bottom: 0.15em;
+      }
+    }
+
+    small {
+      font-size: 13px !important;
+    }
+
+    .meta-news-data {
+      display: flex;
+      justify-content: space-between;
+    }
+    .pill {
+      background: $Light;
+      // max-width: 100px;
+      font-size: 12px !important;
+      text-align: center;
+      border-radius: 2em;
+      color: white;
+      padding: 0.25em 1.25em;
+      margin: 1em 0.25em;
+    }
+
+    .pill:hover {
+      background: $PrimaryGradient;
+    }
+
+    a {
+      color: $Primary;
+      cursor: pointer;
+      outline: none;
+      background: $PrimaryGradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
   }
 
   .tab-item {
