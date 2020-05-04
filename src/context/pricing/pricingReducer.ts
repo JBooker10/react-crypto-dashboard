@@ -1,4 +1,9 @@
-import { STREAM_PRICE, STREAM_TOP_PRICES, STREAM_PRICES } from "./../types";
+import {
+  STREAM_PRICE,
+  STREAM_TOP_PRICES,
+  STREAM_PRICES,
+  STREAM_TICKER,
+} from "./../types";
 
 export function pricingReducer(state: any, action: any) {
   switch (action.type) {
@@ -6,19 +11,25 @@ export function pricingReducer(state: any, action: any) {
       return {
         ...state,
         price: action.payload,
-        loading: false
+        loading: false,
       };
     case STREAM_PRICES:
       return {
         ...state,
         prices: action.payload,
-        loading: false
+        loading: false,
       };
     case STREAM_TOP_PRICES:
       return {
         ...state,
         topPrices: action.payload,
-        loading: false
+        loading: false,
+      };
+    case STREAM_TICKER:
+      return {
+        ...state,
+        quote: action.payload,
+        loading: false,
       };
     default:
       throw new Error();

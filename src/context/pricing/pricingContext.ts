@@ -4,6 +4,7 @@ interface PriceStreaming {
   price: number;
   prices: any;
   topPrices: any;
+  quote: any;
   priceWebSocket: WebSocket;
   pricesWebSocket: WebSocket;
   topPriceWebSocket: WebSocket;

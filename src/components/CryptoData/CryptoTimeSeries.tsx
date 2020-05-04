@@ -12,7 +12,7 @@ import {
   CartesianGrid,
   BarChart,
   Tooltip,
-  Bar
+  Bar,
 } from "recharts";
 
 import CryptoTimeSeriesActions from "./CryptoTimeSeriesActions";
@@ -26,7 +26,7 @@ interface CryptoTimeSeries {
 export default function CryptoTimeSeries({
   getDailyOHLCV,
   dailyOHLCV,
-  symbol
+  symbol,
 }: CryptoTimeSeries) {
   const [hoverData, setHoverData] = useState({} as any);
 
@@ -92,10 +92,10 @@ export default function CryptoTimeSeries({
           <Tooltip
             cursor={{
               stroke: Lighter,
-              strokeDasharray: 8
+              strokeDasharray: 8,
             }}
             content={showTooltipData}
-            labelFormatter={label =>
+            labelFormatter={(label) =>
               moment.unix(label as any).format("MM/DD/YYYY hh:mm a")
             }
             contentStyle={chartToolTipStyle}
@@ -112,7 +112,7 @@ export default function CryptoTimeSeries({
         <BarChart width={chartWidth} height={100} data={dailyOHLCV}>
           <YAxis
             tick={true}
-            tickFormatter={tick => numeral(tick).format("0.00a")}
+            tickFormatter={(tick) => numeral(tick).format("0.00a")}
             tickLine={false}
             axisLine={false}
             tickCount={1}
@@ -121,10 +121,10 @@ export default function CryptoTimeSeries({
           <XAxis dataKey="time" hide={true} />
           <Tooltip
             cursor={{
-              fill: Navy
+              fill: Navy,
             }}
             contentStyle={chartToolTipStyle}
-            labelFormatter={label =>
+            labelFormatter={(label) =>
               moment.unix(label as any).format("MM/DD/YYYY hh:mm a")
             }
           />
