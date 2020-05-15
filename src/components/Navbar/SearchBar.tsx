@@ -9,7 +9,7 @@ export default function SearchBar() {
   const [find, setFind] = useState([]);
 
   // eslint-disable-next-line
-  useEffect(() => getTopAssets(), loading);
+  useEffect(() => getTopAssets(), [loading]);
   // eslint-disable-next-line
   useEffect(() => {}, [find.length <= 0]);
 

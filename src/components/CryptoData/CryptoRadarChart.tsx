@@ -4,7 +4,7 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis
+  PolarRadiusAxis,
 } from "recharts";
 import { Primary, Light } from "./../../styles/colors";
 
@@ -13,7 +13,7 @@ export default function CryptoRadarChart({ tradingSignals, primary }: any) {
     largetxsVar,
     addressesNetGrowth,
     concentrationVar,
-    inOutVar
+    inOutVar,
   } = tradingSignals;
 
   largetxsVar.name = "Largest Transaction Var";
@@ -25,7 +25,7 @@ export default function CryptoRadarChart({ tradingSignals, primary }: any) {
     largetxsVar,
     addressesNetGrowth,
     concentrationVar,
-    inOutVar
+    inOutVar,
   ]);
 
   const size = 1.3;

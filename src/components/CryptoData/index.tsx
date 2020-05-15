@@ -2,15 +2,14 @@ import React, { useContext, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import CryptoTimeSeries from "./CryptoTimeSeries";
 import cryptoCurrencyCTX from "../../context/cryptocurrency/cryptoCurrencyContext";
-import cryptoStreamCTX from "./../../context/pricing/pricingContext";
 import News from "./News";
 import Trades from "./Trades";
 import Analysis from "./Analysis";
 import ErrorNoData from "./ErrorNoData";
+import { TradingSignals } from "../type";
 
 export default function CryptoData() {
   const cryptoCTX = useContext(cryptoCurrencyCTX);
-  const cryptoStream = useContext(cryptoStreamCTX);
   const {
     tradingSignals,
     getTradingSignals,
@@ -20,30 +19,24 @@ export default function CryptoData() {
     dailyOHLCV,
     news,
     getNews,
+  }: {
+    tradingSignals: TradingSignals;
+    getTradingSignals: Function;
+    getDailyOHLCV: Function;
+    getNews: Function;
+    dailyOHLCV: any;
+    searchAsset: any;
+    news: any;
+    loading: Boolean;
   } = cryptoCTX;
-  // const { streamQuote, quote } = cryptoStream;
 
   useEffect(() => {
     getTradingSignals(searchAsset.symbol);
     getDailyOHLCV("180", searchAsset.symbol);
-    // streamQuote(searchAsset.symbol);
     getNews();
 
     // eslint-disable-next-line
   }, [searchAsset, loading, news.length !== 0]);
-
-  //  F: "1"
-  // FSYM: "BTC"
-  // ID: "90301121"
-  // M: "Coinbase"
-  // P: 8823.84
-  // Q: 0.03254678
-  // RTS: 1588528603
-  // RTSNS: 61000000
-  // TOTAL: 287.1875792352
-  // TS: 1588528602
-  // TSYM: "USD"
-  // TYPE: "0"
 
   return (
     <Tabs className="column crypto-data">

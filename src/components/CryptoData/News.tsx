@@ -18,7 +18,7 @@ export default function News({ news }: any) {
       }}
     >
       {news.map((n: any) => (
-        <div key={n.key} className="news">
+        <div key={n.id} className="news">
           <div className="header">
             <h5>{n.title}</h5>
             <p style={{ color: "#fff", fontSize: "16px" }}>
@@ -26,7 +26,9 @@ export default function News({ news }: any) {
             </p>
             <div style={{ display: "flex" }}>
               {n.categories.split("|").map((c: string) => (
-                <small className="pill">{c}</small>
+                <small className="pill" key={c}>
+                  {c}
+                </small>
               ))}
             </div>
             <div className="meta-news-data">

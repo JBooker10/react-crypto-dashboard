@@ -41,7 +41,7 @@ export default function CryptoCurrencyState(props: any): JSX.Element {
   ) => {
     axios
       .get(
-        `/${CRYPTO_COMPARE_URI}v2/${history}?fsym=${symbol}&tsym=USD&limit=${period}`
+        `${CRYPTO_COMPARE_URI}v2/${history}?fsym=${symbol}&tsym=USD&limit=${period}`
       )
       .then((res) => {
         dispatch({

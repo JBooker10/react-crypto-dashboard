@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import cryptoStreamCTX from "./../../context/pricing/pricingContext";
+import Loader from "./../Icons/Loader";
 import moment from "moment";
 import Numeral from "numeral";
 import { HorizontalBar } from "react-chartjs-2";
@@ -28,19 +29,18 @@ const queue = new TradingQueue(8);
 export default function Trades({ symbol }: any) {
   const cryptoStream = useContext(cryptoStreamCTX);
   const { streamQuote, quote } = cryptoStream;
-
-  //   queue.push(quote);
+  const length: number = Object.keys(quote).length;
 
   useEffect(() => {
     streamQuote(symbol);
-  }, [Object.keys(quote).length]);
+  }, [length, streamQuote, symbol]);
 
   if (
     (quote.TYPE === "0" && quote.F === "2") ||
     quote.F === "1" ||
     quote.F === "9"
   ) {
-    setInterval(() => queue.push(quote), 4000);
+    setInterval(() => queue.push(quote), 1000);
   }
 
   const data = {
@@ -122,11 +122,9 @@ export default function Trades({ symbol }: any) {
     },
   };
 
-  console.log(queue.data);
-
   return (
     <div>
-      {queue.data.length && (
+      {queue.data.length ? (
         <HorizontalBar
           data={data}
           options={options}
@@ -134,6 +132,10 @@ export default function Trades({ symbol }: any) {
             return queue.data[0].ID;
           }}
         />
+      ) : (
+        <div style={{ display: "flex", height: "50vh" }}>
+          <Loader width={100} height={100} />
+        </div>
       )}
     </div>
   );

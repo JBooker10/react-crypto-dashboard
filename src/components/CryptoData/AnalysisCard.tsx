@@ -1,6 +1,12 @@
 import React from "react";
+import { Signal } from "./../type";
 
-export default function AnalysisCard({ name, analysis }: any) {
+interface Props {
+  name: string;
+  analysis: Signal;
+}
+
+export default function AnalysisCard({ name, analysis }: Props) {
   return (
     <div className="column">
       <div className="analysis-card">

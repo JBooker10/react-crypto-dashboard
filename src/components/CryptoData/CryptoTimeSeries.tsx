@@ -92,7 +92,7 @@ export default function CryptoTimeSeries({
           <Tooltip
             cursor={{
               stroke: Lighter,
-              strokeDasharray: 8,
+              strokeDasharray: "8",
             }}
             content={showTooltipData}
             labelFormatter={(label) =>
