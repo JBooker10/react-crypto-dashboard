@@ -1,14 +1,15 @@
 import React from "react";
 import AnalysisCard from "./AnalysisCard";
 import CryptoRadarChart from "./CryptoRadarChart";
+import { TradingSignals } from "../type";
 
 export default function Analysis({ tradingSignals }: any) {
   const {
     largetxsVar,
     addressesNetGrowth,
     concentrationVar,
-    inOutVar
-  } = tradingSignals;
+    inOutVar,
+  }: TradingSignals = tradingSignals;
   return (
     <div className="analysis">
       <div className="columns">

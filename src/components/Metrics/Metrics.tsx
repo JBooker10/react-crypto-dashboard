@@ -17,7 +17,7 @@ export default function Metrics({
   high24,
   open24,
   change24,
-  changePercent
+  changePercent,
 }: MetricProps) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -46,9 +46,7 @@ export default function Metrics({
       />
       <Metric
         name="Volume 24"
-        value={Numeral(volume)
-          .format("($ 0.000 a)")
-          .toUpperCase()}
+        value={Numeral(volume).format("($ 0.000 a)").toUpperCase()}
       />
       <Metric name="High 24" value={high24} />
       <Metric name="Open 24" value={open24} />
