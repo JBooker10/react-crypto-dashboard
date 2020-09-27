@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
-import GitHubButton from "react-github-btn";
+// import GitHubButton from "react-github-btn";
 
 import Dropdown, {
   DropdownTrigger,
-  DropdownContent
+  DropdownContent,
   // @ts-ignore
 } from "react-simple-dropdown";
 
@@ -19,14 +19,14 @@ export default function Navbar() {
         <SearchBar />
       </section>
       <section className="navbar-section nav-center">
-        <GitHubButton
+        {/* <GitHubButton
           href="https://github.com/JBooker10/crypto-dashboard"
           data-color-scheme="no-preference: dark; light: light; dark: dark;"
           data-icon="octicon-star"
           aria-label="Star ntkme/github-buttons on GitHub"
         >
           Star
-        </GitHubButton>
+        </GitHubButton> */}
         <a
           rel="noopener noreferrer"
           className="navbar-icons"
@@ -37,11 +37,7 @@ export default function Navbar() {
         </a>
         <Dropdown active={isActive} onClick={() => setActive(!isActive)}>
           <DropdownTrigger>
-            <figure className="avatar avatar-lg" data-initial="JB">
-              <img
-                alt=""
-                src="https://avatars1.githubusercontent.com/u/30580333?s=460&u=aca19c007f898b02198ee615833ed2d93d692091&v=4"
-              />
+            <figure className="avatar avatar-lg">
               <i className="avatar-presence online"></i>
             </figure>
           </DropdownTrigger>
